@@ -41,10 +41,11 @@ The project follows the MVVM (Model-View-ViewModel) architecture, which allows f
 I store user preferences (e.g., chosen destinations, filter settings) in Swift Data for offline-first functionality, ensuring a seamless experience even when the user is not connected to the internet. Data like flight and hotel searches, including real-time pricing, are retrieved from APIs and are temporarily stored in memory for faster access during the session.
 
 #### API Calls
-For this app, I'm using a single API to handle both flight and hotel data. I rely on the [Amadeus IT Group SA] API to retrieve real-time information about available flights and hotels based on user preferences.
+For this app, I'm using a single API to handle both flight and hotel data. I rely on the [**Amadeus IT Group SA**] API to retrieve real-time information about available flights and hotels based on user preferences.
 
 #### 3rd-Party Frameworks
 - Firebase for authentication and real-time notifications about price changes.
+- Amadeus for Developers for tracking API calls 
 
 
 ## Outlook

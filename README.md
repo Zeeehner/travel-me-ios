@@ -11,7 +11,7 @@ Füge hier am Ende die Screenshots deiner App ein (achte hierbei auf die Guideli
 
 <p>
   <img src="./img/imageLow.png" width="200">
-  <img src="./img/iamageMid.png" width="200">
+  <img src="./img/imageMid.png" width="200">
   <img src="./img/imageHigh.png" width="200">
 </p>
 

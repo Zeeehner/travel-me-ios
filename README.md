@@ -6,7 +6,6 @@
 
 The app is perfect for travelers who want to make the most of their time without spending hours searching for the best prices and options. It combines flight and hotel bookings in a user-friendly interface, saving you valuable time. Compared to other apps, "Travel Me" is especially focused on simplicity and clear recommendations, allowing you to focus fully on your journey instead of dealing with overwhelming options.
 
-/*
 ## Design
 Füge hier am Ende die Screenshots deiner App ein (achte hierbei auf die Guidelines).
 
@@ -15,10 +14,9 @@ Füge hier am Ende die Screenshots deiner App ein (achte hierbei auf die Guideli
   <img src="./img/screen2.png" width="200">
   <img src="./img/screen3.png" width="200">
 </p>
-*/
 
 ## Features
-**Heare are all the features my app offers.**
+**Here are all the features my app offers.**
 
 - 🛩️ Show flights to desired destination
 - 🏨 Display hotels matching budget and preferences

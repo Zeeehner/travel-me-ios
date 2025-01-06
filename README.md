@@ -10,9 +10,9 @@ The app is perfect for travelers who want to make the most of their time without
 Füge hier am Ende die Screenshots deiner App ein (achte hierbei auf die Guidelines).
 
 <p>
-  <img src="./img/screen1.png" width="200">
-  <img src="./img/screen2.png" width="200">
-  <img src="./img/screen3.png" width="200">
+  <img src="./img/imageLow.png" width="200">
+  <img src="./img/iamgeMid.png" width="200">
+  <img src="./img/imageHigh.png" width="200">
 </p>
 
 ## Features

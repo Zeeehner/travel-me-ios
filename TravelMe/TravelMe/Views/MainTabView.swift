@@ -20,6 +20,16 @@ struct MainTabView: View {
                         Label("Home", systemImage: "house")
                     }
                 
+                FavoriteView()
+                    .tabItem {
+                        Label("Favorites", systemImage: "star")
+                    }
+                
+                BookmarkView()
+                    .tabItem {
+                        Label("Bookmarks", systemImage: "bookmark")
+                    }
+                
                 SettingsView()
                     .tabItem {
                         Label("Profile", systemImage: "person.fill")

@@ -26,7 +26,7 @@ struct LoginView: View {
                         .opacity(0.8)
                         .shadow(radius: 30)
                     Spacer()
-    
+                    
                     Group {
                         TextField("E-Mail", text: $authViewModel.email)
                             .textFieldStyle(.roundedBorder)
@@ -69,17 +69,32 @@ struct LoginView: View {
                                     await authViewModel.loginEmailPassword()
                                 }
                             }
-                        
+                        if !authViewModel.isRegistering {
+                            Button(action: {
+                                Task {
+                                    await authViewModel.resetPassword()
+                                }
+                            }) {
+                                Text("Forgot Password?")
+                                    .foregroundStyle(.blue)
+                                    .font(.subheadline)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .padding(.top, 5)
+                            
+                        }
                         if authViewModel.isRegistering {
                             SecureField("Confirm password", text: $authViewModel.confirmPassword)
                                 .textFieldStyle(.roundedBorder)
                                 .autocapitalization(.none)
                         }
                     }
-                  
-                        Text(authViewModel.errorMessage)
-                            .foregroundStyle(.red)
-    
+                    
+                    Text(authViewModel.errorMessage)
+                        .foregroundStyle(.red)
+                        .padding(.top, 10)
+                        .multilineTextAlignment(.center)
+                    
                     Button(action: {
                         if authViewModel.isRegistering {
                             Task {

@@ -100,4 +100,26 @@ class AuthViewModel: ObservableObject {
             showErrorAlert = true
         }
     }
+    func resetPassword() async {
+        guard !email.isEmpty else {
+            errorMessage = "Please enter your email address."
+            showErrorAlert = true
+            return
+        }
+        
+        guard isValidEmail else {
+            errorMessage = "Please enter a valid email address."
+            showErrorAlert = true
+            return
+        }
+        
+        do {
+            try await authRepository.auth.sendPasswordReset(withEmail: email)
+            errorMessage = "Password reset email sent. Please check your inbox."
+            showErrorAlert = true
+        } catch {
+            errorMessage = error.localizedDescription
+            showErrorAlert = true
+        }
+    }
 }

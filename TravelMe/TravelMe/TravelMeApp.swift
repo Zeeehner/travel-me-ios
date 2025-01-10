@@ -7,9 +7,23 @@
 
 import SwiftUI
 import SwiftData
+import FirebaseAuth
+import FirebaseCore
+import FirebaseCrashlytics
 
 @main
 struct TravelMeApp: App {
+    
+    @StateObject private var authViewModel = AuthViewModel(authRepository: .init(), firestoreRepository: .init())
+    @StateObject private var homeViewModel = HomeViewModel(firestoreRepository: .init())
+    
+    init() {
+        FirebaseConfiguration.shared.setLoggerLevel(.min)
+        FirebaseApp.configure()
+        Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(true)
+        print("Firebase loading complete!")
+    }
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
@@ -25,7 +39,7 @@ struct TravelMeApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(homeViewModel: homeViewModel)
         }
         .modelContainer(sharedModelContainer)
     }

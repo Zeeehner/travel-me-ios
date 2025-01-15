@@ -15,7 +15,7 @@ struct MainTabView: View {
     var body: some View {
             TabView {
                 
-                DashboardView()
+                SearchView()
                     .tabItem {
                         Label("Home", systemImage: "house")
                     }
@@ -30,7 +30,7 @@ struct MainTabView: View {
                         Label("Bookmarks", systemImage: "bookmark")
                     }
                 
-                SettingsView()
+                ProfileView()
                     .tabItem {
                         Label("Profile", systemImage: "person.fill")
                     }

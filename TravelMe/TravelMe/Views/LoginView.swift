@@ -94,6 +94,15 @@ struct LoginView: View {
                         .foregroundStyle(.red)
                         .padding(.top, 10)
                         .multilineTextAlignment(.center)
+                        .opacity(authViewModel.errorMessage.isEmpty ? 0 : 1)
+                        .animation(.easeInOut, value: authViewModel.errorMessage)
+                        .onAppear {
+                            if !authViewModel.errorMessage.isEmpty {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                    authViewModel.errorMessage = ""
+                                }
+                            }
+                        }
                     
                     Button(action: {
                         if authViewModel.isRegistering {

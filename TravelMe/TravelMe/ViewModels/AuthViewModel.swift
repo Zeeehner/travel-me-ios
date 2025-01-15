@@ -27,7 +27,12 @@ class AuthViewModel: ObservableObject {
     @Published var gender = ""
     @Published var showErrorAlert: Bool = false
     @Published var showDeleteAlert = false
+    @Published var adress = ""
+    @Published var notRegistered: Bool = false
     
+    var currentUserID: String? {
+        return user?.uid
+    }
     var isLoggedIn: Bool {
         return user != nil
     }
@@ -43,7 +48,7 @@ class AuthViewModel: ObservableObject {
     }
     var isRegisterInputValid: Bool {
         if isRegistering {
-            return !email.isEmpty && !password.isEmpty && password == confirmPassword && !username.isEmpty && !gender.isEmpty
+            return !email.isEmpty && !password.isEmpty && password == confirmPassword && !username.isEmpty && !gender.isEmpty && !adress.isEmpty
         } else {
             return !email.isEmpty && !password.isEmpty
         }
@@ -65,6 +70,7 @@ class AuthViewModel: ObservableObject {
     func loginEmailPassword() async {
         do {
             let result = try await authRepository.signIn(email: email, password: password)
+            //            firestoreRepository.loadUser(id: result.uid)
             user = result
         } catch {
             errorMessage = error.localizedDescription
@@ -73,8 +79,8 @@ class AuthViewModel: ObservableObject {
     }
     func registerEmailPassword() async {
         do {
-            let result = try await authRepository.register(email: email, password: password, confirmPassword: confirmPassword, birthday: Date(), gender: gender)
-            try firestoreRepository.createUser(id: result.uid, email: email, username: username, gender: gender, birthday: birthday)
+            let result = try await authRepository.register(email: email, password: password, confirmPassword: confirmPassword, birthday: Date(), gender: gender, adress: adress)
+            try firestoreRepository.createUser(id: result.uid, email: email, username: username, gender: gender, birthday: birthday, adress: adress)
             resetUserData()
             isRegistering.toggle()
         } catch {
@@ -89,6 +95,7 @@ class AuthViewModel: ObservableObject {
         self.username = ""
         self.birthday = Date()
         self.gender = ""
+        self.adress = ""
     }
     func logout() {
         do {

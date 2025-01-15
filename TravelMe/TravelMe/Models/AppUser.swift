@@ -16,6 +16,7 @@ struct AppUser: Codable {
     var gender: String
     var registeredOn: String
     var birthday: Date
+    var adress: String
     
     var age: Int {
         let calendar = Calendar.current
@@ -23,12 +24,13 @@ struct AppUser: Codable {
         return ageComponents.year ?? 0
     }
     
-    init(id: String, username: String, email: String, gender: String, registeredOn: String = Date.now.ISO8601Format(), birthday: Date) {
+    init(id: String, username: String, email: String, gender: String, registeredOn: String = Date.now.ISO8601Format(), birthday: Date, adress: String) {
         self.id = id
         self.username = username
         self.email = email
         self.gender = gender
         self.registeredOn = registeredOn
         self.birthday = birthday
+        self.adress = adress
     }
 }

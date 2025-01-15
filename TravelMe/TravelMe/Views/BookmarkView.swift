@@ -6,13 +6,23 @@
 //
 
 import SwiftUI
+import FirebaseCore
 
 struct BookmarkView: View {
+    
+    @EnvironmentObject private var authViewModel: AuthViewModel
+    @ObservedObject var homeViewModel: HomeViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            GradientView()
+            
+            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        }
     }
 }
 
 #Preview {
-    BookmarkView()
+    BookmarkView(homeViewModel: HomeViewModel(firestoreRepository: .init()))
+        .environmentObject(AuthViewModel(authRepository: .init(), firestoreRepository: .init()))
 }

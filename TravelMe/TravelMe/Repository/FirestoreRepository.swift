@@ -12,8 +12,8 @@ class FirestoreRepository {
     
     let db = Firestore.firestore()
     
-    func createUser(id: String, email: String, username: String, gender: String, birthday: Date) throws {
-        let user: AppUser = .init(id: id, username: username, email: email, gender: gender, registeredOn: Date.now.ISO8601Format(), birthday: birthday)
+    func createUser(id: String, email: String, username: String, gender: String, birthday: Date, adress: String) throws {
+        let user: AppUser = .init(id: id, username: username, email: email, gender: gender, registeredOn: Date.now.ISO8601Format(), birthday: birthday, adress: adress)
         do {
             try db.collection("users").document(id).setData(from: user)
         } catch {

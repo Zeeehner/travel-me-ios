@@ -6,8 +6,13 @@
 //
 
 import SwiftUI
+import FirebaseCore
 
 struct SearchView: View {
+    
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @ObservedObject var homeViewModel: HomeViewModel
+    
     @State private var searchText = ""
     @State private var selectedLabel = 0
     
@@ -65,14 +70,16 @@ struct SearchView: View {
                 
                 // Login section
                 HStack {
-                    Button("Sign into your account") {
-                        // Login action
+                    if authViewModel.notRegistered {
+                        Button("Sign into your account") {
+                            authViewModel.logout()
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(.blue)
+                        .foregroundStyle(.white)
+                        .cornerRadius(8)
                     }
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(.blue)
-                    .foregroundStyle(.white)
-                    .cornerRadius(8)
                 }
                 .padding(.horizontal)
                 
@@ -108,5 +115,6 @@ struct SearchView: View {
 
 
 #Preview {
-    SearchView()
+    SearchView(homeViewModel: HomeViewModel(firestoreRepository: .init()))
+        .environmentObject(AuthViewModel(authRepository: .init(), firestoreRepository: .init()))
 }

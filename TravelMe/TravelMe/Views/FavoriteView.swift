@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import FirebaseCore
 
 struct FavoriteView: View {
+    
+    @EnvironmentObject private var authViewModel: AuthViewModel
+    @ObservedObject var homeViewModel: HomeViewModel
     
     @State private var searchText = ""
     
@@ -59,5 +63,6 @@ struct FavoriteView: View {
 }
 
 #Preview {
-    FavoriteView()
+    FavoriteView(homeViewModel: HomeViewModel(firestoreRepository: .init()))
+        .environmentObject(AuthViewModel(authRepository: .init(), firestoreRepository: .init()))
 }

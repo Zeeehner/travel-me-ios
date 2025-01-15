@@ -41,6 +41,7 @@ struct TravelMeApp: App {
         WindowGroup {
             ContentView(homeViewModel: homeViewModel)
         }
+        .environmentObject(authViewModel)
         .modelContainer(sharedModelContainer)
     }
 }

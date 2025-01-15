@@ -6,35 +6,38 @@
 //
 
 import SwiftUI
+import FirebaseCore
 
 struct MainTabView: View {
     
     @EnvironmentObject var authViewModel: AuthViewModel
-    @ObservedObject var homeViewModel : HomeViewModel
+    @ObservedObject var homeViewModel: HomeViewModel
     
     var body: some View {
             TabView {
                 
-                SearchView()
+                SearchView(homeViewModel: homeViewModel)
                     .tabItem {
-                        Label("Home", systemImage: "house")
+                        Label("Search", systemImage: "magnifyingglass")
                     }
                 
-                FavoriteView()
+                FavoriteView(homeViewModel: homeViewModel)
                     .tabItem {
                         Label("Favorites", systemImage: "star")
                     }
                 
-                BookmarkView()
+                BookmarkView(homeViewModel: homeViewModel)
                     .tabItem {
                         Label("Bookmarks", systemImage: "bookmark")
                     }
                 
-                ProfileView()
+                ProfileView(homeViewModel: homeViewModel)
                     .tabItem {
                         Label("Profile", systemImage: "person.fill")
                     }
             }
+            .environmentObject(authViewModel)
+            .environmentObject(homeViewModel)
     }
 }
 

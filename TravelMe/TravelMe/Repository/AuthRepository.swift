@@ -21,7 +21,7 @@ class AuthRepository {
             throw error
         }
     }
-    func register(email: String, password: String, confirmPassword: String, birthday: Date, gender: String) async throws -> FirebaseAuth.User {
+    func register(email: String, password: String, confirmPassword: String, birthday: Date, gender: String, adress: String) async throws -> FirebaseAuth.User {
         do {
             let result = try await auth.createUser(withEmail: email, password: password)
             return result.user

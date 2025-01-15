@@ -10,11 +10,14 @@ import MapKit
 
 struct ProfileView: View {
     
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @ObservedObject var homeViewModel: HomeViewModel
+    
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 52.5200, longitude: 13.4050),
         span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     )
-
+    
     
     @State private var hotels = Hotel.samples
     
@@ -30,10 +33,10 @@ struct ProfileView: View {
                 
                 HStack {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Justus Jonas")
+                        Text(homeViewModel.appUser?.username ?? "User not logged in")
                             .font(.headline)
-                        Text("Weiterbildungsweg 2")
-                        Text("Tel: 01525368269")
+                        Text(homeViewModel.appUser?.email ?? "")
+                        Text(homeViewModel.appUser?.adress ?? "No further information")
                             .foregroundStyle(.gray)
                     }
                     
@@ -54,13 +57,14 @@ struct ProfileView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.horizontal)
                 
-
+                
                 Map(coordinateRegion: $region, annotationItems: hotels) { hotel in
-                    MapMarker(coordinate: hotel.coordinate, tint: .blue)
+                    MapMarker(coordinate: hotel.coordinate, tint: .red)
                 }
                 .frame(height: 300)
                 .cornerRadius(8)
                 .padding(.horizontal)
+                
                 
                 Text("Drive save during navigation")
                     .padding()
@@ -69,13 +73,25 @@ struct ProfileView: View {
                     .cornerRadius(8)
                     .padding(.horizontal)
                 
+                Button("Logout") {
+                    authViewModel.logout()
+                }
+                .padding()
+                .buttonStyle(.borderedProminent)
                 Spacer()
                 
+            }
+            
+            .task {
+                if let uid = authViewModel.currentUserID {
+                    await homeViewModel.loadUser(uid: uid)
+                }
             }
         }
     }
 }
 
-#Preview {
-    ProfileView()
-}
+    #Preview {
+        ProfileView(homeViewModel: HomeViewModel(firestoreRepository: .init()))
+            .environmentObject(AuthViewModel(authRepository: .init(), firestoreRepository: .init()))
+    }

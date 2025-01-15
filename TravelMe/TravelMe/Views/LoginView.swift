@@ -38,6 +38,9 @@ struct LoginView: View {
                             TextField("Name", text: $authViewModel.username)
                                 .textFieldStyle(.roundedBorder)
                                 .autocapitalization(.none)
+                            TextField("Adress", text: $authViewModel.adress)
+                                .textFieldStyle(.roundedBorder)
+                                .autocapitalization(.none)
                             
                             HStack {
                                 Text("Your birthday:")
@@ -119,6 +122,13 @@ struct LoginView: View {
                     }
                     .frame(height: 100)
                     .disabled(!authViewModel.isRegisterInputValid)
+                    .buttonStyle(.borderedProminent)
+                    
+                    Button("Anonymous Login")  {
+                        Task {
+                            await authViewModel.loginAnonymously()
+                        }
+                    }
                     .buttonStyle(.borderedProminent)
                     
                     Spacer()

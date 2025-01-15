@@ -26,6 +26,7 @@ class HomeViewModel: ObservableObject {
     deinit {
         listener?.remove()
     }
+    
     func loadUser(uid: String) async {
         do {
             appUser = try await firestoreRepository.loadUser(id: uid)

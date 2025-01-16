@@ -49,12 +49,16 @@ struct ProfileView: View {
                     .cornerRadius(8)
                     .padding(.horizontal)
                     
+                    Divider()
                     
                     Text("Nearby Hotels")
                         .font(.title)
+                        .bold()
+                        .italic()
                         .underline()
-                        .frame(maxWidth: .infinity, alignment: .center)
+                        .frame(alignment: .center)
                         .padding(.horizontal)
+//                        .background(.white.opacity(0.6))
                     
                     
                     Map(coordinateRegion: $region, annotationItems: hotels) { hotel in

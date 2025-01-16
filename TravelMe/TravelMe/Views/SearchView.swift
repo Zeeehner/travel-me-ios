@@ -13,9 +13,6 @@ struct SearchView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @ObservedObject var homeViewModel: HomeViewModel
     
-    @State private var searchText = ""
-    @State private var selectedLabel = 0
-    
     let labels = ["Germany", "Austira", "UK", "Dubai", "Istanbul", "Egypt"]
     
     var body: some View {
@@ -32,13 +29,13 @@ struct SearchView: View {
                     HStack(spacing: 12) {
                         ForEach(0..<labels.count, id: \.self) { index in
                             Button(action: {
-                                selectedLabel = index
+                                homeViewModel.selectedLabel = index
                             }) {
                                 Text(labels[index])
                                     .padding(.horizontal, 12)
                                     .padding(.vertical, 6)
-                                    .background(selectedLabel == index ? Color.blue : Color.gray.opacity(0.2))
-                                    .foregroundStyle(selectedLabel == index ? .white : .black)
+                                    .background(homeViewModel.selectedLabel == index ? Color.blue : Color.gray.opacity(0.2))
+                                    .foregroundStyle(homeViewModel.selectedLabel == index ? .white : .black)
                                     .cornerRadius(8)
                             }
                         }
@@ -51,7 +48,7 @@ struct SearchView: View {
                 VStack(spacing: 8) {
                     HStack {
                         Image(systemName: "magnifyingglass")
-                        TextField("Search", text: $searchText)
+                        TextField("Search", text: $homeViewModel.searchText)
                     }
                     .padding()
                     .background(.gray.opacity(0.2))

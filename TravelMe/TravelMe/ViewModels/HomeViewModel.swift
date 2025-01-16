@@ -16,6 +16,8 @@ class HomeViewModel: ObservableObject {
     @Published var appUser: AppUser?
     @Published var showErrorAlert: Bool = false
     @Published var showCreateSheet: Bool = false
+    @Published var searchText = ""
+    @Published var selectedLabel = 0
     
     var errorMessage: String = ""
     var listener: ListenerRegistration?

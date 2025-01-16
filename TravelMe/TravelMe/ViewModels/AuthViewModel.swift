@@ -29,6 +29,9 @@ class AuthViewModel: ObservableObject {
     @Published var showDeleteAlert = false
     @Published var adress = ""
     @Published var notRegistered: Bool = false
+    @Published var shareLocation = false
+    @Published var enableNotifications = false
+    @Published var subscribeNewsletter = false
     
     var currentUserID: String? {
         return user?.uid

@@ -61,7 +61,7 @@ struct ProfileView: View {
 //                        .background(.white.opacity(0.6))
                     
                     
-                    Map(coordinateRegion: $region, annotationItems: hotels) { hotel in
+                Map(coordinateRegion: $region, annotationItems: hotels) { hotel in
                         MapMarker(coordinate: hotel.coordinate, tint: .red)
                     }
                     .frame(height: 300)

@@ -18,6 +18,9 @@ class HomeViewModel: ObservableObject {
     @Published var showCreateSheet: Bool = false
     @Published var searchText = ""
     @Published var selectedLabel = 0
+    @Published var destination: String = ""
+    @Published var travelDate: Date = Date()
+    @Published var numberOfPassengers: Int = 1
     
     var errorMessage: String = ""
     var listener: ListenerRegistration?

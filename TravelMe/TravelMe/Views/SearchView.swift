@@ -45,41 +45,9 @@ struct SearchView: View {
                 
                 Divider()
                 
-                VStack(spacing: 8) {
-                    HStack {
-                        Image(systemName: "magnifyingglass")
-                        TextField("Search", text: $homeViewModel.searchText)
-                    }
-                    .padding()
-                    .background(.gray.opacity(0.2))
-                    .cornerRadius(8)
-                    
-                    Button("Search") {
-                        // Search action
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(.blue)
-                    .foregroundStyle(.white)
-                    .cornerRadius(8)
-                }
-                .padding(.horizontal)
+                SearchBox(homeViewModel: homeViewModel)
                 
-                // Login section
-                HStack {
-                    if !authViewModel.isRegistering {
-                        Button("Sign into your account") {
-                            authViewModel.logout()
-                        }
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(.blue)
-                        .foregroundStyle(.white)
-                        .cornerRadius(8)
-                    }
-                }
-                .padding(.horizontal)
-                
+               
                 Divider()
                 
                 ScrollView {

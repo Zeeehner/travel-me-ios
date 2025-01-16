@@ -39,14 +39,15 @@ struct FavoriteView: View {
                             ForEach(0..<4) { _ in
                                 VStack {
                                     Rectangle()
-                                        .fill(.gray.opacity(0.2))
+//                                        .fill(.gray.opacity(0.2))
+                                        .fill(.white)
                                         .aspectRatio(1.0, contentMode: .fit)
                                         .overlay(
                                             Text("Musterhotel / Liked")
                                                 .foregroundStyle(.black)
                                         )
                                         .cornerRadius(8)
-                                        .shadow(radius: 2)
+                                        .shadow(radius: 8)
                                 }
                             }
                         }

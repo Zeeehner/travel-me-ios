@@ -39,12 +39,13 @@ struct ProfileView: View {
                         
                         Spacer()
                         
-                        Image(systemName: "person.circle")
+                        Image(systemName: "person.crop.circle")
                             .resizable()
                             .frame(width: 50, height: 50)
                     }
                     .padding()
-                    .background(.gray.opacity(0.2))
+//                    .background(.gray.opacity(0.2))
+                    .background(.white.opacity(0.6))
                     .cornerRadius(8)
                     .padding(.horizontal)
                     
@@ -67,7 +68,8 @@ struct ProfileView: View {
                     Text("Drive save during navigation")
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(.gray.opacity(0.2))
+//                        .background(.gray.opacity(0.2))
+                        .background(.white.opacity(0.6))
                         .cornerRadius(8)
                         .padding(.horizontal)
                 

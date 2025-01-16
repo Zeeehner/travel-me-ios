@@ -90,7 +90,8 @@ struct SearchView: View {
                         ForEach(0..<10) { _ in
                             VStack {
                                 Rectangle()
-                                    .fill(.gray.opacity(0.2))
+//                                    .fill(.gray.opacity(0.2))
+                                    .fill(.white.opacity(0.6))
                                     .aspectRatio(1.0, contentMode: .fit)
                                     .overlay(
                                         Text("Musterhotel")

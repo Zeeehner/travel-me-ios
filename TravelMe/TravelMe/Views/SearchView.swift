@@ -70,7 +70,7 @@ struct SearchView: View {
                 
                 // Login section
                 HStack {
-                    if authViewModel.notRegistered {
+                    if !authViewModel.isRegistering {
                         Button("Sign into your account") {
                             authViewModel.logout()
                         }
@@ -100,6 +100,7 @@ struct SearchView: View {
                                             .foregroundStyle(.black)
                                     )
                                     .cornerRadius(8)
+                                    .shadow(radius: 2)
                                 Text("HotelName")
                             }
                         }

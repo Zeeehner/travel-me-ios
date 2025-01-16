@@ -75,6 +75,7 @@ struct ProfileView: View {
                 
                 Button("Logout") {
                     authViewModel.logout()
+                    homeViewModel.appUser = nil
                 }
                 .padding()
                 .buttonStyle(.borderedProminent)

@@ -82,7 +82,7 @@ struct ProfileView: View {
                 }
             }
             .navigationTitle("Profile")
-            .navigationBarTitleDisplayMode(.inline)
+//            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem {
                     NavigationLink(destination: SettingsView(homeViewModel: homeViewModel)) {

@@ -45,7 +45,6 @@ struct SearchBox: View {
                     Picker("Passengers", selection: $homeViewModel.numberOfPassengers) {
                         ForEach(1...9, id: \.self) { pers in
                             Text("\(pers)")
-                            
                         }
                     }
                     .padding(.leading, 90)
@@ -67,7 +66,6 @@ struct SearchBox: View {
                         .background(.blue)
                 }
                 .frame(height: 50)
-//                .background(.white)
             }
             .cornerRadius(10)
             .overlay(
@@ -75,7 +73,6 @@ struct SearchBox: View {
                     .stroke(.gray, lineWidth: 1)
                     .opacity(0.3)
                     .shadow(radius: 2)
-                
             )
             .padding()
         }

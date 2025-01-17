@@ -44,7 +44,6 @@ struct ProfileView: View {
                             .frame(width: 50, height: 50)
                     }
                     .padding()
-//                    .background(.gray.opacity(0.2))
                     .background(.white.opacity(0.6))
                     .cornerRadius(8)
                     .padding(.horizontal)
@@ -58,8 +57,6 @@ struct ProfileView: View {
                         .underline()
                         .frame(alignment: .center)
                         .padding(.horizontal)
-//                        .background(.white.opacity(0.6))
-                    
                     
                 Map(coordinateRegion: $region, annotationItems: hotels) { hotel in
                         MapMarker(coordinate: hotel.coordinate, tint: .red)
@@ -68,19 +65,15 @@ struct ProfileView: View {
                     .cornerRadius(8)
                     .padding(.horizontal)
                     
-                    
                     Text("Drive save during navigation")
                         .padding()
                         .frame(maxWidth: .infinity)
-//                        .background(.gray.opacity(0.2))
                         .background(.white.opacity(0.6))
                         .cornerRadius(8)
                         .padding(.horizontal)
                 
                     Spacer()
-                    
                 }
-                
                 .task {
                     if let uid = authViewModel.currentUserID {
                         await homeViewModel.loadUser(uid: uid)
@@ -88,7 +81,6 @@ struct ProfileView: View {
                 }
             }
             .navigationTitle("Profile")
-//            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem {
                     NavigationLink(destination: SettingsView(homeViewModel: homeViewModel)) {

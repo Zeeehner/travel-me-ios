@@ -31,10 +31,8 @@ struct FavoriteView: View {
                             GridItem(.flexible())
                         ], spacing: 16) {
                             ForEach(0..<4) { _ in
-                                Button(action: {
-                                    // placeholder / navigationDestination
-                                }) {
-                                    HotelCard()
+                                NavigationLink(destination: ShowcaseView(homeViewModel: homeViewModel)) {
+                                    HotelCard(homeViewModel: homeViewModel)
                                 }
                             }
                         }

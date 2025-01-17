@@ -96,7 +96,7 @@ struct SettingsView: View {
                             .background(.white.opacity(0.6))
                             .cornerRadius(8)
                     }
-                    
+    
                     Button(action: {
                         authViewModel.logout()
                         homeViewModel.appUser = nil

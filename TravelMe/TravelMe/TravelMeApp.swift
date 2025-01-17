@@ -39,7 +39,7 @@ struct TravelMeApp: App {
 
     var body: some Scene {
         WindowGroup {
-            LoginView(homeViewModel: homeViewModel)
+            ContentView(homeViewModel: homeViewModel)
         }
         .environmentObject(authViewModel)
         .modelContainer(sharedModelContainer)

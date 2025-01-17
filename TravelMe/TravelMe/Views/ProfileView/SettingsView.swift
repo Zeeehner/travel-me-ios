@@ -57,7 +57,6 @@ struct SettingsView: View {
                     .padding(.vertical, 8)
                 }
                 .padding()
-//                .background(.gray.opacity(0.2))
                 .background(.white.opacity(0.6))
                 .cornerRadius(8)
                 .padding(.horizontal)
@@ -74,7 +73,6 @@ struct SettingsView: View {
                         Text("Edit your Profile")
                             .frame(maxWidth: .infinity)
                             .padding()
-//                            .background(.gray.opacity(0.2))
                             .background(.white.opacity(0.6))
                             .cornerRadius(8)
                     }
@@ -85,7 +83,6 @@ struct SettingsView: View {
                         Text("CarPlay")
                             .frame(maxWidth: .infinity)
                             .padding()
-//                            .background(.gray.opacity(0.2))
                             .background(.white.opacity(0.6))
                             .cornerRadius(8)
                     }
@@ -96,7 +93,6 @@ struct SettingsView: View {
                         Text("Tracking")
                             .frame(maxWidth: .infinity)
                             .padding()
-//                            .background(.gray.opacity(0.2))
                             .background(.white.opacity(0.6))
                             .cornerRadius(8)
                     }
@@ -109,7 +105,6 @@ struct SettingsView: View {
                             .frame(maxWidth: .infinity)
                             .padding()
                             .foregroundStyle(.red)
-//                            .background(.gray.opacity(0.2))
                             .background(.white.opacity(0.6))
                             .cornerRadius(8)
                     }

@@ -21,15 +21,9 @@ struct FavoriteView: View {
                 GradientView()
                     .opacity(0.4)
                 
-                VStack(spacing: 0) {                    
-                    HStack {
-                        Image(systemName: "magnifyingglass")
-                        TextField("Search", text: $searchText)
-                    }
-                    .padding()
-                    .background(.gray.opacity(0.2))
-                    .cornerRadius(8)
-                    .padding()
+                VStack(spacing: 0) {
+                    
+                    Searchbar(homeViewModel: homeViewModel)
                     
                     ScrollView {
                         LazyVGrid(columns: [
@@ -40,18 +34,7 @@ struct FavoriteView: View {
                                 Button(action: {
                                     // placeholder / navigationDestination
                                 }) {
-                                    VStack {
-                                        Rectangle()
-                                            .fill(.white)
-                                            .frame(width: 150, height: 110)
-                                            .aspectRatio(1.0, contentMode: .fit)
-                                            .overlay(
-                                                Text("Musterhotel / Liked")
-                                                    .foregroundStyle(.black)
-                                            )
-                                            .cornerRadius(8)
-                                            .shadow(radius: 8)
-                                    }
+                                    HotelCard()
                                 }
                             }
                         }

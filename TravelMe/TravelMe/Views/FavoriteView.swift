@@ -37,17 +37,21 @@ struct FavoriteView: View {
                             GridItem(.flexible())
                         ], spacing: 16) {
                             ForEach(0..<4) { _ in
-                                VStack {
-                                    Rectangle()
-//                                        .fill(.gray.opacity(0.2))
-                                        .fill(.white)
-                                        .aspectRatio(1.0, contentMode: .fit)
-                                        .overlay(
-                                            Text("Musterhotel / Liked")
-                                                .foregroundStyle(.black)
-                                        )
-                                        .cornerRadius(8)
-                                        .shadow(radius: 8)
+                                Button(action: {
+                                    // placeholder / navigationDestination
+                                }) {
+                                    VStack {
+                                        Rectangle()
+                                            .fill(.white)
+                                            .frame(width: 150, height: 110)
+                                            .aspectRatio(1.0, contentMode: .fit)
+                                            .overlay(
+                                                Text("Musterhotel / Liked")
+                                                    .foregroundStyle(.black)
+                                            )
+                                            .cornerRadius(8)
+                                            .shadow(radius: 8)
+                                    }
                                 }
                             }
                         }

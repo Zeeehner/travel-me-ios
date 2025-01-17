@@ -21,6 +21,7 @@ class HomeViewModel: ObservableObject {
     @Published var destination: String = ""
     @Published var travelDate: Date = Date()
     @Published var numberOfPassengers: Int = 1
+    @Published private var likedItems: [Int] = []
     
     var errorMessage: String = ""
     var listener: ListenerRegistration?

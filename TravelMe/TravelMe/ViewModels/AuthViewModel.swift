@@ -23,11 +23,14 @@ class AuthViewModel: ObservableObject {
     @Published var password: String = ""
     @Published var confirmPassword = ""
     @Published var username: String = ""
+    @Published var firstName: String = ""
+    @Published var lastName: String = ""
     @Published var birthday = Date()
     @Published var gender = ""
     @Published var showErrorAlert: Bool = false
     @Published var showDeleteAlert = false
     @Published var adress = ""
+    @Published var number = ""
     @Published var shareLocation = false
     @Published var enableNotifications = false
     @Published var subscribeNewsletter = false

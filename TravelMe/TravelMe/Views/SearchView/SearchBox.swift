@@ -60,7 +60,7 @@ struct SearchBox: View {
                 }) {
                     Text("Search")
                         .bold()
-                        .foregroundStyle(.black)
+                        .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(.blue)

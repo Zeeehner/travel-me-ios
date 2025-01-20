@@ -20,6 +20,7 @@ struct SettingsView: View {
             VStack(spacing: 20) {
                 Text("Settings")
                     .font(.title)
+                    .bold()
                     .padding()
                 
                 VStack(spacing: 0) {
@@ -63,6 +64,7 @@ struct SettingsView: View {
                 
                 Text("General")
                     .font(.title2)
+                    .bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal)
                 

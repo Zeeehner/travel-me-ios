@@ -35,7 +35,7 @@ struct SearchView: View {
                                     Text(labels[index])
                                         .padding(.horizontal, 12)
                                         .padding(.vertical, 6)
-                                        .background(homeViewModel.selectedLabel == index ? Color.blue : Color.white.opacity(0.8))
+                                        .background(homeViewModel.selectedLabel == index ? .blue : .white.opacity(0.8))
                                         .foregroundStyle(homeViewModel.selectedLabel == index ? .white : .black)
                                         .cornerRadius(8)
                                 }

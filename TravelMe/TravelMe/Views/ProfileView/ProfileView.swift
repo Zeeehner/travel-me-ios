@@ -19,7 +19,7 @@ struct ProfileView: View {
     )
     
     
-    @State private var hotels = Hotel.samples
+    @State private var hotels = Hotels.samples
     
     var body: some View {
         NavigationStack {

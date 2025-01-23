@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct TokenResponse: Codable {
+struct TokenResponse: Codable, Identifiable {
     
+    var id: UUID { UUID() }
     let access_token: String
     let expires_in: Int
     let token_type: String

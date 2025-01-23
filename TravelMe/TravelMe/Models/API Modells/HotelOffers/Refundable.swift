@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Refundable: Codable {
+struct Refundable: Codable, Identifiable {
     
+    var id: UUID { UUID() }
     let cancellationRefund: String
 }

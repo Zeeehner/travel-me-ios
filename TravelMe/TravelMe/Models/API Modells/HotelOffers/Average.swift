@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Average: Codable {
-  
+struct Average: Codable, Identifiable {
+    
+    var id: UUID { UUID() }
     let base: String
 }

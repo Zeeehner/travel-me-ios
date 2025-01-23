@@ -13,7 +13,8 @@ class APIClient {
     private var tokenExpiryDate: Date?
     
     private let clientId = "***REMOVED***"
-    private let baseUrl = "https://test.api.amadeus.com/v3/shopping/hotel-offers"
+    // base URL // https://test.api.amadeus.com/v3/shopping/hotel-offers
+    private let baseUrl = "https://test.api.amadeus.com/v1/reference-data/locations/hotels/by-city"
     
     init(completion: @escaping() -> Void) {
         fetchAccessToken(completion: completion)
@@ -69,10 +70,12 @@ class APIClient {
             }
                                             // URL(string: "\(self.baseUrl)?hotelIds=MCLONGHM&adults=1")
             let currentDate = Date()
-            let formatter = DateFormatter()
+            let formatter = DateFormatter()  // adults=1&cityCode=LON&checkInDate=2025-02-22&roomQuantity=1&hotelIds=MCLONGHM,IBLONH01,IBLONH02
+                                                // https://test.api.amadeus.com/v1/reference-data/locations/hotels/by-city?cityCode=PAR
+
             formatter.dateFormat = "yyyy-MM-dd"
             let dateString = formatter.string(from: currentDate.addingTimeInterval(30*24*60*60))
-            guard let url = URL(string: "\(self.baseUrl)?adults=1&cityCode=LON&checkInDate=\(dateString)&roomQuantity=1") else {
+            guard let url =  URL(string: "\(self.baseUrl)?cityCode=PAR&radius=100&radiusUnit=KM" ) else {
                 print("Invalid URL")
                 completion(nil)
                 return

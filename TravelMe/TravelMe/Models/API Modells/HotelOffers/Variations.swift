@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct Variations: Codable {
- 
+struct Variations: Codable, Identifiable {
+    
+    var id: UUID { UUID() }
     let average: Average
     let changes: [Change]
 }

@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Description: Codable {
+struct Description: Codable, Identifiable {
     
+    var id: UUID { UUID() }
     let text, lang: String
 }

@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Guests: Codable {
-
+struct Guests: Codable, Identifiable {
+    
+    var id: UUID { UUID() }
     let adults: Int
 }

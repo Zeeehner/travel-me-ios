@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct Policies: Codable  {
-
+struct Policies: Codable, Identifiable {
+    
+    var id: UUID { UUID() }
     let cancellations: [Cancellation]
     let paymentType: String
     let refundable: Refundable

@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct RateFamilyEstimated: Codable {
+struct RateFamilyEstimated: Codable, Identifiable {
     
+    var id: UUID { UUID() }
     let code, type: String
 }

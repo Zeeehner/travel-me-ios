@@ -13,13 +13,13 @@ struct Datum: Codable, Identifiable {
     let type: String
     let hotel: Hotel
     let available: Bool
-    let offers: [Offer]
+//    let offers: [Offer]
     let datumSelf: String
     
     
     enum CodingKeys: String, CodingKey {
         
-        case type, hotel, available, offers
+      case type, hotel, available//, offers
         case datumSelf = "self"
     }
 }

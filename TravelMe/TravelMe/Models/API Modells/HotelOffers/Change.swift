@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Change: Codable {
-
+struct Change: Codable, Identifiable {
+//    var id:String
+    var id: UUID { UUID() }
     let startDate, endDate, base: String
 }

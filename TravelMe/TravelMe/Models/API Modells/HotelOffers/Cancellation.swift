@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Cancellation: Codable {
-  
+struct Cancellation: Codable, Identifiable {
+    var id: UUID { UUID() }
     let numberOfNights: Int
     let deadline: Date
     let amount, policyType: String

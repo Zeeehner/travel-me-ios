@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Price: Codable {
+struct Price: Codable, Identifiable {
+    let id: String
     let currency, base, total: String
     let variations: Variations
 }

@@ -8,5 +8,6 @@
 import Foundation
 
 struct RateFamilyEstimated: Codable {
+    
     let code, type: String
 }

@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Room: Codable {
+struct Room: Codable, Identifiable {
+    var id: UUID { UUID() }
     let type: String
     let typeEstimated: TypeEstimated
     let description: Description

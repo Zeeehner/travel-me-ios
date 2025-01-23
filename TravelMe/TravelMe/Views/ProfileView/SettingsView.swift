@@ -113,12 +113,15 @@ struct SettingsView: View {
                 }
                 .padding(.horizontal)
                 
-                Text("By signing in to your account or creating a new one, you agree to our Terms of Service and Privacy Policy.")
-                    .font(.caption)
-                    .foregroundStyle(.gray)
-                    .multilineTextAlignment(.center)
-                    .padding()
-                
+                VStack(alignment: .center){
+                    Text("By signing in to your account or creating a new one, you agree to our Terms of Service and Privacy Policy.")
+                        .lineLimit(2)
+                        .font(.caption)
+                        .foregroundStyle(.gray)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                }
+
                 Spacer()
             }
         }

@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Datum: Codable {
+struct Datum: Codable, Identifiable {
+    var id: UUID { UUID() }
     let type: String
     let hotel: Hotel
     let available: Bool
@@ -16,6 +17,7 @@ struct Datum: Codable {
     
     
     enum CodingKeys: String, CodingKey {
+        
         case type, hotel, available, offers
         case datumSelf = "self"
     }

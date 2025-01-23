@@ -20,70 +20,71 @@ struct SearchView: View {
             ZStack {
                 GradientView()
                     .opacity(0.4)
-                
-                VStack(spacing: 16) {
-                    Text("Travel Me")
-                        .font(.headline)
-                        .padding(.bottom, 8)
-                    
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 12) {
-                            ForEach(0..<labels.count, id: \.self) { index in
-                                Button(action: {
-                                    homeViewModel.selectedLabel = index
-                                }) {
-                                    Text(labels[index])
-                                        .padding(.horizontal, 12)
-                                        .padding(.vertical, 6)
-                                        .background(homeViewModel.selectedLabel == index ? .blue : .white.opacity(0.8))
-                                        .foregroundStyle(homeViewModel.selectedLabel == index ? .white : .black)
-                                        .cornerRadius(8)
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(spacing: 16) {
+                        Text("Travel Me")
+                            .font(.headline)
+                            .padding(.bottom, 8)
+                        
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 12) {
+                                ForEach(0..<labels.count, id: \.self) { index in
+                                    Button(action: {
+                                        homeViewModel.selectedLabel = index
+                                    }) {
+                                        Text(labels[index])
+                                            .padding(.horizontal, 12)
+                                            .padding(.vertical, 6)
+                                            .background(homeViewModel.selectedLabel == index ? .blue : .white.opacity(0.8))
+                                            .foregroundStyle(homeViewModel.selectedLabel == index ? .white : .black)
+                                            .cornerRadius(8)
+                                    }
                                 }
                             }
+                            .padding(.horizontal)
                         }
-                        .padding(.horizontal)
-                    }
-                    .frame(height: 40)
-                    
-                    Divider()
-                    
-                    SearchBox(homeViewModel: homeViewModel)
-                    
-                    Divider()
-                    
-                    ScrollView(.vertical, showsIndicators: false) {
-                        VStack(alignment: .leading, spacing: 20) {
-                            VStack(alignment: .leading) {
-                                Text("Featured Hotels")
-                                    .font(.headline)
-                                    .padding(.horizontal)
+                        .frame(height: 40)
+                        
+                        Divider()
+                        
+                        SearchBox(homeViewModel: homeViewModel)
+                        
+                        Divider()
+                        
+                        ScrollView(.vertical, showsIndicators: false) {
+                            VStack(alignment: .leading, spacing: 20) {
+                                VStack(alignment: .leading) {
+                                    Text("Featured Hotels")
+                                        .font(.headline)
+                                        .padding(.horizontal)
+                                    
+                                    ScrollView(.horizontal, showsIndicators: false) {
+                                        LazyHStack(spacing: 16) {
+                                            ForEach(0..<10, id: \.self) { index in
+                                                HotelCard(homeViewModel: homeViewModel)
+                                            }
+                                        }
+                                        .padding(.horizontal)
+                                    }
+                                }
                                 
-                                ScrollView(.horizontal, showsIndicators: false) {
-                                    LazyHStack(spacing: 16) {
-                                        ForEach(0..<10, id: \.self) { index in
+                                Divider()
+                                
+                                VStack(alignment: .leading) {
+                                    Text("All Hotels")
+                                        .font(.headline)
+                                        .padding(.horizontal)
+                                    
+                                    LazyVGrid(columns: [
+                                        GridItem(.flexible()),
+                                        GridItem(.flexible())
+                                    ], spacing: 16) {
+                                        ForEach(0..<10, id: \.self) { _ in
                                             HotelCard(homeViewModel: homeViewModel)
                                         }
                                     }
                                     .padding(.horizontal)
                                 }
-                            }
-                            
-                            Divider()
-                            
-                            VStack(alignment: .leading) {
-                                Text("All Hotels")
-                                    .font(.headline)
-                                    .padding(.horizontal)
-                                
-                                LazyVGrid(columns: [
-                                    GridItem(.flexible()),
-                                    GridItem(.flexible())
-                                ], spacing: 16) {
-                                    ForEach(0..<10, id: \.self) { _ in
-                                        HotelCard(homeViewModel: homeViewModel)
-                                    }
-                                }
-                                .padding(.horizontal)
                             }
                         }
                     }
@@ -92,7 +93,6 @@ struct SearchView: View {
         }
     }
 }
-
 
 #Preview {
     SearchView(homeViewModel: HomeViewModel(firestoreRepository: .init()))

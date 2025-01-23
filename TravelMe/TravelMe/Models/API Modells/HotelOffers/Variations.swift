@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Variations: Codable {
+struct Variations: Codable , Identifiable {
+    let id: String
     let average: Average
     let changes: [Change]
 }

@@ -9,7 +9,7 @@ import Foundation
 
 struct Offer: Codable {
     let id, checkInDate, checkOutDate, rateCode: String
-    let rateFamilyEstimated: RateFamilyEstimated
+    var rateFamilyEstimated: RateFamilyEstimated?
     let room: Room
     let guests: Guests
     let price: Price

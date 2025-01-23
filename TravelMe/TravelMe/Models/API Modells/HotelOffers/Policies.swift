@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Policies: Codable, Identifiable {
-    let id: String
+struct Policies: Codable  {
+
     let cancellations: [Cancellation]
     let paymentType: String
     let refundable: Refundable

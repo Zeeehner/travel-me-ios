@@ -9,7 +9,7 @@ import Foundation
 
 struct Hotel: Codable, Identifiable {
     var id: UUID { UUID() }
-    let type, hotelID, chainCode, dupeID: String
+    let type, hotelId, chainCode, dupeID: String
     let name, cityCode: String
     let latitude, longitude: Double
     
@@ -17,7 +17,7 @@ struct Hotel: Codable, Identifiable {
     enum CodingKeys: String, CodingKey {
         
         case type
-        case hotelID = "hotelId"
+        case hotelId = "hotelId"
         case chainCode
         case dupeID = "dupeId"
         case name, cityCode, latitude, longitude

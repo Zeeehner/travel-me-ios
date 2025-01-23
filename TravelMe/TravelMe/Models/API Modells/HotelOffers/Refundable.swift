@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct Refundable: Codable, Identifiable {
+struct Refundable: Codable {
     
-    let id: String
     let cancellationRefund: String
 }

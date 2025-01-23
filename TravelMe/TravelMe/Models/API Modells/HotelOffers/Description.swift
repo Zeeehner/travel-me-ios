@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Description: Codable, Identifiable {
-    let id: String
+struct Description: Codable {
+    
     let text, lang: String
 }

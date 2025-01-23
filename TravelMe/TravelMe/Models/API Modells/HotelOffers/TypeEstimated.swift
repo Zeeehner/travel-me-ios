@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct TypeEstimated: Codable, Identifiable {
-    let id: String
+struct TypeEstimated: Codable {
+
     let category: String
     let beds: Int
     let bedType: String

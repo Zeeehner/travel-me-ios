@@ -12,16 +12,18 @@ struct MainTabView: View {
     
     @EnvironmentObject var authViewModel: AuthViewModel
     @ObservedObject var homeViewModel: HomeViewModel
+    @ObservedObject var hotelViewModel: HotelViewModel
+    
     
     var body: some View {
             TabView {
                 
-                SearchView(homeViewModel: homeViewModel)
+                SearchView(homeViewModel: homeViewModel, hotelViewModel: hotelViewModel)
                     .tabItem {
                         Label("Search", systemImage: "magnifyingglass")
                     }
                 
-                FavoriteView(homeViewModel: homeViewModel)
+                FavoriteView(homeViewModel: homeViewModel, hotelViewModel: hotelViewModel)
                     .tabItem {
                         Label("Favorites", systemImage: "star")
                     }
@@ -42,6 +44,6 @@ struct MainTabView: View {
 }
 
 #Preview {
-    MainTabView(homeViewModel: HomeViewModel(firestoreRepository: .init()))
+    MainTabView(homeViewModel: HomeViewModel(firestoreRepository: .init()), hotelViewModel: .init())
         .environmentObject(AuthViewModel(authRepository: .init(), firestoreRepository: .init()))
 }

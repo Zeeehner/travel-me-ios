@@ -15,10 +15,11 @@ struct ContentView: View {
     
     @EnvironmentObject private var authViewModel : AuthViewModel
     @ObservedObject var homeViewModel : HomeViewModel
+    @ObservedObject var hotelViewModel: HotelViewModel
     
     var body: some View {
         if authViewModel.isLoggedIn {
-            MainTabView(homeViewModel: homeViewModel)
+            MainTabView(homeViewModel: homeViewModel, hotelViewModel: hotelViewModel)
         } else {
             LoginView(homeViewModel: homeViewModel)
         }
@@ -26,6 +27,6 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(homeViewModel: HomeViewModel(firestoreRepository: .init()))
+    ContentView(homeViewModel: HomeViewModel(firestoreRepository: .init()), hotelViewModel: .init())
         .environmentObject(AuthViewModel(authRepository: .init(), firestoreRepository: .init()))
 }

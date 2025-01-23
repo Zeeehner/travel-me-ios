@@ -8,7 +8,8 @@
 import Foundation
 
 struct Datum: Codable, Identifiable {
-    var id: UUID { UUID() }
+//    var id: UUID { UUID() }
+    var id: String { hotel.hotelId }
     let type: String
     let hotel: Hotel
     let available: Bool

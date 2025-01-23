@@ -12,6 +12,7 @@ struct FavoriteView: View {
     
     @EnvironmentObject private var authViewModel: AuthViewModel
     @ObservedObject var homeViewModel: HomeViewModel
+    @ObservedObject var hotelViewModel: HotelViewModel
     
     @State private var searchText = ""
     
@@ -32,7 +33,7 @@ struct FavoriteView: View {
                         ], spacing: 16) {
                             ForEach(0..<4) { _ in
                                 NavigationLink(destination: ShowcaseView(homeViewModel: homeViewModel)) {
-                                    HotelCard(homeViewModel: homeViewModel)
+                                    HotelCard(homeViewModel: homeViewModel, hotelViewModel: hotelViewModel)
                                 }
                             }
                         }
@@ -47,6 +48,6 @@ struct FavoriteView: View {
 }
 
 #Preview {
-    FavoriteView(homeViewModel: HomeViewModel(firestoreRepository: .init()))
+    FavoriteView(homeViewModel: HomeViewModel(firestoreRepository: .init()), hotelViewModel: .init())
         .environmentObject(AuthViewModel(authRepository: .init(), firestoreRepository: .init()))
 }

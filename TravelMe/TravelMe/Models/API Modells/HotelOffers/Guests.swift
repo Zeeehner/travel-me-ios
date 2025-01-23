@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Guests: Codable, Identifiable {
-    let id: String
+struct Guests: Codable {
+
     let adults: Int
 }

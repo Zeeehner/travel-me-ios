@@ -12,6 +12,8 @@ struct SearchView: View {
     
     @EnvironmentObject var authViewModel: AuthViewModel
     @ObservedObject var homeViewModel: HomeViewModel
+    @ObservedObject var hotelViewModel: HotelViewModel
+    
     
     let labels = ["Germany", "Austria", "UK", "Dubai", "Istanbul", "Egypt"]
     
@@ -61,7 +63,7 @@ struct SearchView: View {
                                     ScrollView(.horizontal, showsIndicators: false) {
                                         LazyHStack(spacing: 16) {
                                             ForEach(0..<10, id: \.self) { index in
-                                                HotelCard(homeViewModel: homeViewModel)
+                                                HotelCard(homeViewModel: homeViewModel, hotelViewModel: hotelViewModel)
                                             }
                                         }
                                         .padding(.horizontal)
@@ -80,7 +82,7 @@ struct SearchView: View {
                                         GridItem(.flexible())
                                     ], spacing: 16) {
                                         ForEach(0..<10, id: \.self) { _ in
-                                            HotelCard(homeViewModel: homeViewModel)
+                                            HotelCard(homeViewModel: homeViewModel, hotelViewModel: hotelViewModel)
                                         }
                                     }
                                     .padding(.horizontal)
@@ -90,11 +92,14 @@ struct SearchView: View {
                     }
                 }
             }
+            .onAppear {
+                hotelViewModel.loadHotelData()
+            }
         }
     }
 }
 
 #Preview {
-    SearchView(homeViewModel: HomeViewModel(firestoreRepository: .init()))
+    SearchView(homeViewModel: HomeViewModel(firestoreRepository: .init()), hotelViewModel: .init())
         .environmentObject(AuthViewModel(authRepository: .init(), firestoreRepository: .init()))
 }

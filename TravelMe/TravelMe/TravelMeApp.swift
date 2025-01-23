@@ -16,6 +16,7 @@ struct TravelMeApp: App {
     
     @StateObject private var authViewModel = AuthViewModel(authRepository: .init(), firestoreRepository: .init())
     @StateObject private var homeViewModel = HomeViewModel(firestoreRepository: .init())
+    @StateObject private var hotelViewModel = HotelViewModel()
     
     init() {
         FirebaseConfiguration.shared.setLoggerLevel(.min)
@@ -39,7 +40,7 @@ struct TravelMeApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView(homeViewModel: homeViewModel)
+            ContentView(homeViewModel: homeViewModel, hotelViewModel: hotelViewModel)
         }
         .environmentObject(authViewModel)
         .modelContainer(sharedModelContainer)

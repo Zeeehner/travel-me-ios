@@ -15,29 +15,36 @@ class HotelViewModel: ObservableObject {
     @Published var errorMessage: String = ""
     @Published var isLoading: Bool = false
     
-    init(apiClient: APIClient = APIClient(completion: {})) {
-        self.apiClient = apiClient
-        apiClient.fetchAccessToken {
-            print("Access token fetched successfully.")
+    init() async {
+        self.apiClient = await APIClient()
+        Task {
+            await initializeClient()
         }
     }
     
+    private func initializeClient() async {
+        // Optional: Add any initialization logic if needed
+    }
+    
     func loadHotelData() {
-        isLoading = true
-        print("Attempting to load hotel data...")
-        apiClient.fetchHotelData { [weak self] hotels in
-            DispatchQueue.main.async {
-                print("Fetch hotel data completed")
-                if let hotels = hotels {
+        Task {
+            isLoading = true
+            print("Attempting to load hotel data...")
+            
+            do {
+                if let hotels = await apiClient.fetchHotelData() {
                     print("Hotels received: \(hotels.count)")
-                    self?.hotels = hotels
+                    self.hotels = hotels
                 } else {
                     print("No hotels retrieved")
-                    self?.errorMessage = "Error retrieving hotel data."
+                    self.errorMessage = "Error retrieving hotel data."
                 }
-                self?.isLoading = false
+                } catch {
+                print("Error loading hotels: \(error)")
+                self.errorMessage = "Error loading hotels: \(error.localizedDescription)"
             }
+            
+            isLoading = false
         }
     }
 }
-

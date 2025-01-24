@@ -15,11 +15,13 @@ class APIClient {
     private let clientId = "***REMOVED***"
     private let baseUrl = "https://test.api.amadeus.com/v1/reference-data/locations/hotels/by-city"
     
-    init() async {
-        do {
-            try await fetchAccessToken()
-        } catch {
-            print("Token fetch failed: \(error)")
+    init() {
+        Task {
+            do {
+                try await fetchAccessToken()
+            } catch {
+                print("Token fetch failed: \(error)")
+            }
         }
     }
     
@@ -51,7 +53,7 @@ class APIClient {
         return accessToken ?? ""
     }
     
-    func fetchHotelData() async -> [Datum]? {
+    func fetchHotelData() async -> [Hotel]? {
         do {
             let token = try await getAccessToken()
             
@@ -59,7 +61,7 @@ class APIClient {
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd"
             
-            guard let url = URL(string: "\(baseUrl)?cityCode=PAR&radius=100&max=20") else {
+            guard let url = URL(string: "\(baseUrl)?cityCode=PAR&radius=100") else {
                 print("Invalid URL")
                 return nil
             }
@@ -69,7 +71,7 @@ class APIClient {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             
             let (data, _) = try await URLSession.shared.data(for: request)
-            let welcome = try JSONDecoder().decode(Welcome.self, from: data)
+            let welcome = try JSONDecoder().decode(HotelResponse.self, from: data)
             
             return welcome.data
         } catch {

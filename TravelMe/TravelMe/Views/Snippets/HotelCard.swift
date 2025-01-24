@@ -30,7 +30,7 @@ struct HotelCard: View {
                             )
                             .cornerRadius(8)
                             .shadow(radius: 2)
-                        Text(firstHotel.hotel.name)
+                        Text(firstHotel.name)
                             .foregroundStyle(.black)
                             .padding(.top, 5)
                     }

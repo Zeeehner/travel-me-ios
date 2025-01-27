@@ -43,7 +43,7 @@ struct HotelCard: View {
                     .overlay(
                         VStack {
                             Text("No hotel found")
-                                .foregroundStyle(.red.opacity(0.6))
+                                .foregroundStyle(.cyan.opacity(0.6))
                         }
                             )
                         

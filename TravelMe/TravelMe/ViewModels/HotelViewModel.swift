@@ -9,6 +9,7 @@ import Foundation
 
 @MainActor
 class HotelViewModel: ObservableObject {
+    
     private var apiClient: APIClient
     @Published var hotels: [Hotel] = []
     @Published var errorMessage: String = ""
@@ -40,3 +41,32 @@ class HotelViewModel: ObservableObject {
         }
     }
 }
+
+//@MainActor
+//class HotelViewModel: ObservableObject {
+//    @Published private(set) var hotels: [Hotel] = []
+//    @Published private(set) var isLoading = false
+//    @Published private(set) var error: NetworkError?
+//    
+//    private let repository: APIRepositoryProtocol
+//    
+//    init(repository: APIRepositoryProtocol = APIRepository()) {
+//        self.repository = repository
+//    }
+//    
+//    func fetchHotels(cityCode: String, radius: Int = 100) {
+//        isLoading = true
+//        error = nil
+//        
+//        Task {
+//            do {
+//                hotels = try await repository.fetchHotels(cityCode: cityCode, radius: radius)
+//            } catch let networkError as NetworkError {
+//                error = networkError
+//            } catch {
+//                error = .unknown(error)
+//            }
+//            isLoading = false
+//        }
+//    }
+//}

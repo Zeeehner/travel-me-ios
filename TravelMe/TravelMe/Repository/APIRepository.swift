@@ -57,7 +57,7 @@ class APIClient {
         do {
             let token = try await getAccessToken()
             
-            let currentDate = Date()
+//            let currentDate = Date()
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd"
             

@@ -9,8 +9,9 @@ import Foundation
 
 struct Hotel: Codable, Identifiable {
     var id: UUID { UUID() }
-    let type, hotelId, chainCode, dupeID, iataCode, lastUpdate: String
+    let hotelId, chainCode, dupeID, iataCode, lastUpdate: String
     let name, cityCode: String
+    let type: String?
     let latitude, longitude: Double
     let geoCode: GeoCode
     let address: Address
@@ -29,3 +30,26 @@ struct Hotel: Codable, Identifiable {
         case address
     }
 }
+
+//struct Hotel: Codable, Identifiable {
+//
+//    let id = UUID().uuidString
+//    
+//    let name: String
+//    let iataCode: String
+//    let type: String?
+//    let hotelId: String
+//    let geoCode: GeoCode
+//    let address: Address
+//    let distance: Distance?
+//    
+//    private enum CodingKeys: String, CodingKey {
+//        case name
+//        case iataCode
+//        case type
+//        case hotelId
+//        case geoCode
+//        case address
+//        case distance
+//    }
+//}

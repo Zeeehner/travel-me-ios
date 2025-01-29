@@ -62,8 +62,10 @@ struct SearchView: View {
                                     
                                     ScrollView(.horizontal, showsIndicators: false) {
                                         LazyHStack(spacing: 16) {
-                                            ForEach(0..<10, id: \.self) { index in
-                                                HotelCard(homeViewModel: homeViewModel, hotelViewModel: hotelViewModel)
+                                            ForEach(0..<min(10, hotelViewModel.hotels.count), id: \.self) { index in
+                                                HotelCard(homeViewModel: homeViewModel,
+                                                          hotelViewModel: hotelViewModel,
+                                                          index: index)
                                             }
                                         }
                                         .padding(.horizontal)
@@ -81,8 +83,10 @@ struct SearchView: View {
                                         GridItem(.flexible()),
                                         GridItem(.flexible())
                                     ], spacing: 16) {
-                                        ForEach(0..<10, id: \.self) { _ in
-                                            HotelCard(homeViewModel: homeViewModel, hotelViewModel: hotelViewModel)
+                                        ForEach(0..<hotelViewModel.hotels.count, id: \.self) { index in
+                                            HotelCard(homeViewModel: homeViewModel,
+                                                      hotelViewModel: hotelViewModel,
+                                                      index: index)
                                         }
                                     }
                                     .padding(.horizontal)

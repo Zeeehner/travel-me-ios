@@ -9,11 +9,11 @@ import Foundation
 
 struct Address: Codable {
     let countryCode: String
-    let address: String
+
     
     enum CodingKeys: String, CodingKey {
         case countryCode
-        case address
+
     
     }
 }

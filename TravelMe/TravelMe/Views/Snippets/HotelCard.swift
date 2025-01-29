@@ -8,56 +8,52 @@
 import SwiftUI
 
 struct HotelCard: View {
-    
     @ObservedObject var homeViewModel: HomeViewModel
     @ObservedObject var hotelViewModel: HotelViewModel
+    let index: Int
     
     var body: some View {
         NavigationStack {
             if hotelViewModel.isLoading {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle())
-            } else if let firstHotel = hotelViewModel.hotels.first {
-                NavigationLink(destination: ShowcaseView(homeViewModel: homeViewModel)) {
-                    VStack {
-                        Rectangle()
-                            .fill(Color.white.opacity(0.6))
-                            .frame(width: 150, height: 110)
-                            .aspectRatio(1.0, contentMode: .fit)
-                            .overlay(
-                                Text("MusterPicture")
-                                    .foregroundStyle(.black)
-                            )
-                            .cornerRadius(8)
-                            .shadow(radius: 2)
-                        Text(firstHotel.name)
-                            .foregroundStyle(.black)
-                            .padding(.top, 5)
-                    }
-                }
             } else {
-                Rectangle()
-                    .fill(Color.white.opacity(0.6))
-                    .frame(width: 150, height: 110)
-                    .aspectRatio(1.0, contentMode: .fit)
-                    .overlay(
+                if index < hotelViewModel.hotels.count {
+                    NavigationLink(destination: ShowcaseView(
+                        homeViewModel: homeViewModel,
+                        hotelViewModel: hotelViewModel,
+                        selectedIndex: index
+                    )) {
                         VStack {
-                            Text("No hotel found")
-                                .foregroundStyle(.cyan.opacity(0.6))
+                            Rectangle()
+                                .fill(Color.white.opacity(0.6))
+                                .frame(width: 150, height: 110)
+                                .aspectRatio(1.0, contentMode: .fit)
+                                .overlay(
+                                    Text("MusterPicture")
+                                        .foregroundStyle(.black)
+                                )
+                                .cornerRadius(8)
+                                .shadow(radius: 2)
+                            Text("\(hotelViewModel.hotels[index].name)")
+                                .foregroundStyle(.black)
+                                .padding(.top, 5)
+                                .frame(width: 150)
+                                .lineLimit(1)
+                                .truncationMode(.tail)
                         }
-                            )
-                        
-                    .cornerRadius(8)
-                    .shadow(radius: 2)
+                    }
+                } else {
+                    Text("Hotel not found")
+                        .foregroundStyle(.black)
+                }
             }
-                        
         }
     }
 }
 
 
 
-
 #Preview {
-    HotelCard(homeViewModel: .init(firestoreRepository: .init()), hotelViewModel: .init())
+    HotelCard(homeViewModel: .init(firestoreRepository: .init()), hotelViewModel: .init(), index: 1)
 }

@@ -9,7 +9,6 @@ import SwiftUI
 import FirebaseCore
 
 struct FavoriteView: View {
-    
     @EnvironmentObject private var authViewModel: AuthViewModel
     @ObservedObject var homeViewModel: HomeViewModel
     @ObservedObject var hotelViewModel: HotelViewModel
@@ -23,7 +22,6 @@ struct FavoriteView: View {
                     .opacity(0.4)
                 
                 VStack(spacing: 0) {
-                    
                     Searchbar(homeViewModel: homeViewModel)
                     
                     ScrollView {
@@ -31,10 +29,10 @@ struct FavoriteView: View {
                             GridItem(.flexible()),
                             GridItem(.flexible())
                         ], spacing: 16) {
-                            ForEach(0..<4) { _ in
-                                NavigationLink(destination: ShowcaseView(homeViewModel: homeViewModel)) {
-                                    HotelCard(homeViewModel: homeViewModel, hotelViewModel: hotelViewModel)
-                                }
+                            ForEach(0..<min(4, hotelViewModel.hotels.count), id: \.self) { index in
+                                HotelCard(homeViewModel: homeViewModel,
+                                          hotelViewModel: hotelViewModel,
+                                          index: index)
                             }
                         }
                         .padding()
@@ -43,11 +41,16 @@ struct FavoriteView: View {
                     Spacer()
                 }
             }
+            .onAppear {
+                hotelViewModel.loadHotelData() 
+            }
         }
     }
 }
 
 #Preview {
-    FavoriteView(homeViewModel: HomeViewModel(firestoreRepository: .init()), hotelViewModel: .init())
-        .environmentObject(AuthViewModel(authRepository: .init(), firestoreRepository: .init()))
+    FavoriteView(homeViewModel: HomeViewModel(firestoreRepository: .init()),
+                 hotelViewModel: .init())
+    .environmentObject(AuthViewModel(authRepository: .init(),
+                                     firestoreRepository: .init()))
 }

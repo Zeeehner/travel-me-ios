@@ -22,6 +22,8 @@ struct ShowcaseView: View {
     
     @EnvironmentObject var authViewModel: AuthViewModel
     @ObservedObject var homeViewModel: HomeViewModel
+    @ObservedObject var hotelViewModel: HotelViewModel
+    let selectedIndex: Int
     
     let hotelLabels = ["Arrival", "Information", "Our Team", "Gallery"]
     
@@ -38,6 +40,12 @@ struct ShowcaseView: View {
                     .opacity(0.4)
                 
                 VStack(spacing: 20) {
+                    if selectedIndex < hotelViewModel.hotels.count {
+                        Text(hotelViewModel.hotels[selectedIndex].name)
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .padding(.top)
+                    }
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack(spacing: 16) {
                             ForEach(0..<5, id: \.self) { _ in
@@ -89,6 +97,10 @@ struct ShowcaseView: View {
 
 
 #Preview {
-    ShowcaseView(homeViewModel: HomeViewModel(firestoreRepository: .init()))
-        .environmentObject(AuthViewModel(authRepository: .init(), firestoreRepository: .init()))
+    ShowcaseView(
+        homeViewModel: HomeViewModel(firestoreRepository: .init()),
+        hotelViewModel: .init(),
+        selectedIndex: 0
+    )
+    .environmentObject(AuthViewModel(authRepository: .init(), firestoreRepository: .init()))
 }

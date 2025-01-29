@@ -9,17 +9,19 @@ import Foundation
 
 @MainActor
 class HotelViewModel: ObservableObject {
-    
     private var apiClient: APIClient
     @Published var hotels: [Hotel] = []
     @Published var errorMessage: String = ""
     @Published var isLoading: Bool = false
+    private var dataLoaded = false 
     
     init() {
         self.apiClient = APIClient()
     }
     
     func loadHotelData() {
+        guard !dataLoaded else { return }
+        
         Task {
             isLoading = true
             print("Attempting to load hotel data...")
@@ -28,6 +30,7 @@ class HotelViewModel: ObservableObject {
                 if let hotels = try await apiClient.fetchHotelData() {
                     print("Hotels received: \(hotels.count)")
                     self.hotels = hotels
+                    self.dataLoaded = true 
                 } else {
                     print("No hotels retrieved")
                     self.errorMessage = "Error retrieving hotel data."
@@ -40,33 +43,10 @@ class HotelViewModel: ObservableObject {
             isLoading = false
         }
     }
+    // Optional: Add method to force reload if needed
+    func forceReload() {
+        dataLoaded = false
+        loadHotelData()
+    }
 }
 
-//@MainActor
-//class HotelViewModel: ObservableObject {
-//    @Published private(set) var hotels: [Hotel] = []
-//    @Published private(set) var isLoading = false
-//    @Published private(set) var error: NetworkError?
-//    
-//    private let repository: APIRepositoryProtocol
-//    
-//    init(repository: APIRepositoryProtocol = APIRepository()) {
-//        self.repository = repository
-//    }
-//    
-//    func fetchHotels(cityCode: String, radius: Int = 100) {
-//        isLoading = true
-//        error = nil
-//        
-//        Task {
-//            do {
-//                hotels = try await repository.fetchHotels(cityCode: cityCode, radius: radius)
-//            } catch let networkError as NetworkError {
-//                error = networkError
-//            } catch {
-//                error = .unknown(error)
-//            }
-//            isLoading = false
-//        }
-//    }
-//}

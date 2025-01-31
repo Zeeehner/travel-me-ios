@@ -11,12 +11,11 @@ import Foundation
 class HotelViewModel: ObservableObject {
     
     private var apiClient: APIClient
-    private var dataLoaded = false 
-    
     @Published var hotels: [Hotel] = []
     @Published var errorMessage: String = ""
     @Published var isLoading: Bool = false
-
+    private var dataLoaded = false 
+  
     
     init() {
         self.apiClient = APIClient()

@@ -14,7 +14,6 @@ struct SearchView: View {
     @ObservedObject var homeViewModel: HomeViewModel
     @ObservedObject var hotelViewModel: HotelViewModel
     
-    
     let labels = ["Germany", "Austria", "UK", "Dubai", "Istanbul", "Egypt"]
     
     var body: some View {
@@ -83,7 +82,7 @@ struct SearchView: View {
                                         GridItem(.flexible()),
                                         GridItem(.flexible())
                                     ], spacing: 16) {
-                                        ForEach(0..<hotelViewModel.hotels.count, id: \.self) { index in
+                                        ForEach(0..<min(20, hotelViewModel.hotels.count), id: \.self) { index in
                                             HotelCard(homeViewModel: homeViewModel,
                                                       hotelViewModel: hotelViewModel,
                                                       index: index)

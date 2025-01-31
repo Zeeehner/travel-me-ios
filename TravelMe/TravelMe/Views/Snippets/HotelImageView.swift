@@ -39,5 +39,5 @@ struct HotelImageView: View {
 
 
 #Preview {
-    HotelImageView(hotelName: "Paris Hotel Hilton")
+    HotelImageView(hotelName: "Paris")
 }

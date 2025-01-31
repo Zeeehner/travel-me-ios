@@ -8,16 +8,6 @@
 import SwiftUI
 import MapKit
 
-//
-//  ShowcaseView.swift
-//  TravelMe
-//
-//  Created by Noah Ra on 17.01.25.
-//
-
-import SwiftUI
-import MapKit
-
 struct ShowcaseView: View {
     
     @EnvironmentObject var authViewModel: AuthViewModel
@@ -49,7 +39,12 @@ struct ShowcaseView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack(spacing: 16) {
                             ForEach(0..<5, id: \.self) { _ in
-                                PhotoBox()
+                                if selectedIndex < hotelViewModel.hotels.count {
+                                    let hotelName = hotelViewModel.hotels[selectedIndex].name
+                                    PhotoBox(photoName: hotelName)
+                                } else {
+                                    PhotoBox(photoName: "defaultPhoto")
+                                }
                             }
                         }
                         .padding(.horizontal)

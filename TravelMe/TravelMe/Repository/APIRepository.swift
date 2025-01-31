@@ -56,11 +56,6 @@ class APIClient {
     func fetchHotelData() async -> [Hotel]? {
         do {
             let token = try await getAccessToken()
-            
-//            let currentDate = Date()
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            
             guard let url = URL(string: "\(baseUrl)?cityCode=PAR&radius=100") else {
                 print("Invalid URL")
                 return nil
@@ -73,7 +68,15 @@ class APIClient {
             let (data, _) = try await URLSession.shared.data(for: request)
             let welcome = try JSONDecoder().decode(HotelResponse.self, from: data)
             
-            return welcome.data
+            if let hotels = welcome.data {
+                let filteredHotels = hotels.filter { hotel in
+                    !hotel.name.lowercased().contains("test property") && !hotel.name.lowercased().contains("demo")
+                }
+                return filteredHotels
+            } else {
+                print("No hotels data available.")
+                return nil
+            }
         } catch {
             print("Error fetching hotel data: \(error)")
             return nil

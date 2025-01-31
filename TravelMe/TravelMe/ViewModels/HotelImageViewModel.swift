@@ -5,8 +5,9 @@
 //  Created by Noah Ra on 31.01.25.
 //
 
-import Foundation
+import SwiftUI
 
+@MainActor
 class HotelImageViewModel: ObservableObject {
     
     @Published var imageUrl: String = ""
@@ -23,9 +24,10 @@ class HotelImageViewModel: ObservableObject {
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
             let response = try JSONDecoder().decode(UnsplashResponse.self, from: data)
-            
             if let firstImage = response.results.first {
-                self.imageUrl = firstImage.urls.small
+                await MainActor.run {
+                    self.imageUrl = firstImage.urls.small
+                }
             }
         } catch {
             print("Error fetching image: \(error)")

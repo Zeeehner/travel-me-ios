@@ -82,7 +82,7 @@ struct SearchView: View {
                                         GridItem(.flexible()),
                                         GridItem(.flexible())
                                     ], spacing: 16) {
-                                        ForEach(0..<min(25, hotelViewModel.hotels.count), id: \.self) { index in
+                                        ForEach(0..<min(26, hotelViewModel.hotels.count), id: \.self) { index in
                                             HotelCard(homeViewModel: homeViewModel,
                                                       hotelViewModel: hotelViewModel,
                                                       index: index)

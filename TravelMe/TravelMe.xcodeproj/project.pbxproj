@@ -14,6 +14,7 @@
 		78B18AF92D3151BD0054DE5F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 78B18AF82D3151BD0054DE5F /* FirebaseFirestore */; };
 		78B18AFB2D3151BD0054DE5F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 78B18AFA2D3151BD0054DE5F /* FirebaseStorage */; };
 		78B18B062D3158410054DE5F /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 78B18B052D3158410054DE5F /* FirebaseCrashlytics */; };
+		78C30E402D4D0B90007FE715 /* Amadeus in Frameworks */ = {isa = PBXBuildFile; productRef = 78C30E3F2D4D0B90007FE715 /* Amadeus */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 				78B18AF92D3151BD0054DE5F /* FirebaseFirestore in Frameworks */,
 				78B18AF32D3151BD0054DE5F /* FirebaseAuth in Frameworks */,
 				78B18AFB2D3151BD0054DE5F /* FirebaseStorage in Frameworks */,
+				78C30E402D4D0B90007FE715 /* Amadeus in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +91,7 @@
 				78B18AF82D3151BD0054DE5F /* FirebaseFirestore */,
 				78B18AFA2D3151BD0054DE5F /* FirebaseStorage */,
 				78B18B052D3158410054DE5F /* FirebaseCrashlytics */,
+				78C30E3F2D4D0B90007FE715 /* Amadeus */,
 			);
 			productName = TravelMe;
 			productReference = 78B18AB72D31490B0054DE5F /* TravelMe.app */;
@@ -120,6 +123,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				78B18AEF2D3151BD0054DE5F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				78C30E3E2D4D0B90007FE715 /* XCRemoteSwiftPackageReference "amadeus-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 78B18AB82D31490B0054DE5F /* Products */;
@@ -369,6 +373,14 @@
 				minimumVersion = 11.6.0;
 			};
 		};
+		78C30E3E2D4D0B90007FE715 /* XCRemoteSwiftPackageReference "amadeus-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amadeus4dev/amadeus-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -406,6 +418,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 78B18AEF2D3151BD0054DE5F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
+		};
+		78C30E3F2D4D0B90007FE715 /* Amadeus */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 78C30E3E2D4D0B90007FE715 /* XCRemoteSwiftPackageReference "amadeus-ios" */;
+			productName = Amadeus;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

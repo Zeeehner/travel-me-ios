@@ -32,9 +32,7 @@ import Foundation
 //}
 
 struct Hotel: Codable, Identifiable {
-
     let id = UUID().uuidString
-    
     var name: String
     let iataCode: String
     let type: String?
@@ -42,7 +40,7 @@ struct Hotel: Codable, Identifiable {
     let geoCode: GeoCode
     let address: Address?
     let distance: Distance?
-    
+    let images: [ImageData]?
     private enum CodingKeys: String, CodingKey {
         case name
         case iataCode
@@ -51,5 +49,6 @@ struct Hotel: Codable, Identifiable {
         case geoCode
         case address
         case distance
+        case images 
     }
 }

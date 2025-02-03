@@ -41,6 +41,7 @@ struct Hotel: Codable, Identifiable {
     let address: Address?
     let distance: Distance?
     let images: [ImageData]?
+    
     private enum CodingKeys: String, CodingKey {
         case name
         case iataCode

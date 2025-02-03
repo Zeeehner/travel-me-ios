@@ -21,7 +21,7 @@ struct HotelCard: View {
                     .progressViewStyle(CircularProgressViewStyle())
             } else {
                 if index < hotelViewModel.hotels.count {
-                    NavigationLink(destination: ShowcaseView(
+                    NavigationLink(destination: DashboardView (
                         homeViewModel: homeViewModel,
                         hotelViewModel: hotelViewModel,
                         selectedIndex: index

@@ -70,7 +70,7 @@ class APIClient {
             
             if let hotels = welcome.data {
                 let filteredHotels = hotels.filter { hotel in
-                    !hotel.name.lowercased().contains("test property") && !hotel.name.lowercased().contains("demo")
+                    !hotel.name.lowercased().contains("test property") && !hotel.name.lowercased().contains("demo") && !hotel.name.contains("Property")
                 }
                 return filteredHotels
             } else {

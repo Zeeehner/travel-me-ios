@@ -38,6 +38,7 @@ struct FavoriteView: View {
                         .padding()
                     }
                     .navigationTitle("Favorites")
+                    .navigationBarTitleDisplayMode(.inline)
                     Spacer()
                 }
             }

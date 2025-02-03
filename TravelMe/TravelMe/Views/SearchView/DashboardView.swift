@@ -1,5 +1,5 @@
 //
-//  ShowcaseView.swift
+//  DashboardView.swift
 //  TravelMe
 //
 //  Created by Noah Ra on 17.01.25.
@@ -8,7 +8,7 @@
 import SwiftUI
 import MapKit
 
-struct ShowcaseView: View {
+struct DashboardView: View {
     
     @EnvironmentObject var authViewModel: AuthViewModel
     @ObservedObject var homeViewModel: HomeViewModel
@@ -85,14 +85,14 @@ struct ShowcaseView: View {
                 }
                 .padding(.top)
             }
-            .navigationTitle("Showcase")
+            .navigationTitle("Hotel-Dashboard")
         }
     }
 }
 
 
 #Preview {
-    ShowcaseView(
+    DashboardView(
         homeViewModel: HomeViewModel(firestoreRepository: .init()),
         hotelViewModel: .init(),
         selectedIndex: 0

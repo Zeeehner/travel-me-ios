@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// The BookingCell view represents a single item in a booking list
 struct BookingCell: View {
     var body: some View {
         HStack(spacing: 0) {

@@ -8,47 +8,57 @@
 import Foundation
 
 @MainActor
+// HotelViewModel is responsible for managing the data related to hotels and handling UI updates
 class HotelViewModel: ObservableObject {
     
+    // APIClient instance for making network requests to fetch hotel data
     private var apiClient: APIClient
-    @Published var hotels: [Hotel] = []
-    @Published var errorMessage: String = ""
-    @Published var isLoading: Bool = false
-    private var dataLoaded = false 
-  
     
+    // Published properties that trigger UI updates when they change
+    @Published var hotels: [Hotel] = [] // List of hotels that will be displayed
+    @Published var errorMessage: String = "" // Error message to display if something goes wrong
+    @Published var isLoading: Bool = false // Boolean to indicate if data is loading
+    private var dataLoaded = false // Flag to ensure data is loaded only once
+    
+    // Initializer to create an instance of APIClient
     init() {
         self.apiClient = APIClient()
     }
     
+    // Function to load hotel data from the API
     func loadHotelData() {
+        // Prevent reloading if the data has already been loaded
         guard !dataLoaded else { return }
         
+        // Start an asynchronous task to fetch the hotel data
         Task {
-            isLoading = true
+            isLoading = true // Set loading state to true
             print("Attempting to load hotel data...")
             
             do {
+                // Fetch hotel data from the API using the APIClient
                 if let hotels = try await apiClient.fetchHotelData() {
-                    print("Hotels received: \(hotels.count)")
-                    self.hotels = hotels
-                    self.dataLoaded = true 
+                    print("Hotels received: \(hotels.count)") // Print number of hotels received
+                    self.hotels = hotels // Update the list of hotels
+                    self.dataLoaded = true // Set flag to indicate data is loaded
                 } else {
+                    // If no hotels are retrieved, show an error message
                     print("No hotels retrieved")
                     self.errorMessage = "Error retrieving hotel data."
                 }
             } catch {
+                // Handle any errors that occur during the data loading process
                 print("Error loading hotels: \(error)")
                 self.errorMessage = "Error loading hotels: \(error.localizedDescription)"
             }
             
-            isLoading = false
+            isLoading = false // Set loading state to false after the operation is complete
         }
     }
-    // Optional: Add method to force reload if needed
+    
+    // Optional: Add method to force reload of data if needed
     func forceReload() {
-        dataLoaded = false
-        loadHotelData()
+        dataLoaded = false // Reset the dataLoaded flag
+        loadHotelData() // Reload the hotel data
     }
 }
-

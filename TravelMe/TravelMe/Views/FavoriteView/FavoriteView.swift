@@ -8,6 +8,7 @@
 import SwiftUI
 import FirebaseCore
 
+// FavoriteView displays a list of favorite hotels in a grid layout
 struct FavoriteView: View {
     @EnvironmentObject private var authViewModel: AuthViewModel
     @ObservedObject var homeViewModel: HomeViewModel

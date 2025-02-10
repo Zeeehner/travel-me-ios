@@ -27,15 +27,18 @@ struct DashboardView: View {
         NavigationStack {
             ZStack {
                 GradientView()
-                    .opacity(0.4)
+                    .opacity(0.4) // Background with slight transparency
                 
                 VStack(spacing: 20) {
+                    // Display the hotel name
                     if selectedIndex < hotelViewModel.hotels.count {
                         Text(hotelViewModel.hotels[selectedIndex].name)
                             .font(.title2)
                             .fontWeight(.bold)
                             .padding(.top)
                     }
+                    
+                    // Horizontal scroll for hotel photos
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack(spacing: 16) {
                             ForEach(0..<5, id: \.self) { _ in
@@ -51,11 +54,12 @@ struct DashboardView: View {
                     }
                     .frame(height: 180)
                     
+                    // Horizontal scroll for hotel labels (Arrival, Information, etc.)
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 12) {
                             ForEach(hotelLabels.indices, id: \.self) { index in
                                 Button(action: {
-                                    homeViewModel.selectedLabel = index
+                                    homeViewModel.selectedLabel = index // Update the selected label
                                 }) {
                                     Text(hotelLabels[index])
                                         .padding(.horizontal, 12)
@@ -69,6 +73,7 @@ struct DashboardView: View {
                         .padding(.horizontal)
                     }
                     
+                    // Map section showing the route to the hotel
                     VStack(alignment: .leading, spacing: 12) {
                         Text("Your way to us")
                             .font(.headline)
@@ -81,11 +86,11 @@ struct DashboardView: View {
                             .padding(.horizontal)
                     }
                     
-                    Spacer()
+                    Spacer() // Takes up the remaining space
                 }
                 .padding(.top)
             }
-            .navigationTitle("Hotel-Dashboard")
+            .navigationTitle("Hotel-Dashboard") // Title of the view
         }
     }
 }

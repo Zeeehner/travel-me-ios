@@ -8,6 +8,7 @@
 import SwiftUI
 import FirebaseCore
 
+// BookmarkView displays a list of bookings with a search bar and a gradient background
 struct BookmarkView: View {
     
     @EnvironmentObject private var authViewModel: AuthViewModel
@@ -21,8 +22,10 @@ struct BookmarkView: View {
                 
                 VStack(spacing: 0) {
                     
+                    // Searchbar placed at the top to allow searching for bookings
                     Searchbar(homeViewModel: homeViewModel)
                     
+                    // LazyVStack to display a vertically scrolling list of items with dynamic data
                     ScrollView {
                         LazyVStack(spacing: 12) {
                             ForEach(0..<4) { _ in

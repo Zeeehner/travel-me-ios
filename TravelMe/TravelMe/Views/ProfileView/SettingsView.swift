@@ -15,15 +15,17 @@ struct SettingsView: View {
     var body: some View {
         ZStack {
             GradientView()
-                .opacity(0.4)
+                .opacity(0.4) // Background with slight transparency
             
             VStack(spacing: 20) {
-                Text("Settings")
+                Text("Settings") // Page title
                     .font(.title)
                     .bold()
                     .padding()
                 
+                // Settings section for location sharing and notifications
                 VStack(spacing: 0) {
+                    // Toggle for location sharing
                     HStack {
                         Text("Share location")
                         Spacer()
@@ -34,6 +36,7 @@ struct SettingsView: View {
                     
                     Divider()
                     
+                    // Toggle for enabling notifications
                     HStack {
                         Text("Enable Notifications")
                         Spacer()
@@ -44,6 +47,7 @@ struct SettingsView: View {
                     
                     Divider()
                     
+                    // Newsletter subscription settings
                     VStack(alignment: .leading, spacing: 4) {
                         HStack {
                             Text("Newsletter")
@@ -58,17 +62,20 @@ struct SettingsView: View {
                     .padding(.vertical, 8)
                 }
                 .padding()
-                .background(.white.opacity(0.6))
+                .background(.white.opacity(0.6)) // Background with slight transparency
                 .cornerRadius(8)
                 .padding(.horizontal)
                 
+                // General settings title
                 Text("General")
                     .font(.title2)
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal)
                 
+                // Buttons for general settings
                 VStack(spacing: 10) {
+                    // Placeholder for editing the profile
                     Button(action: {
                         // placeholder
                     }) {
@@ -79,6 +86,7 @@ struct SettingsView: View {
                             .cornerRadius(8)
                     }
                     
+                    // Placeholder for CarPlay settings
                     Button(action: {
                         // placeholder
                     }) {
@@ -89,6 +97,7 @@ struct SettingsView: View {
                             .cornerRadius(8)
                     }
                     
+                    // Placeholder for tracking settings
                     Button(action: {
                         // placeholder
                     }) {
@@ -99,9 +108,10 @@ struct SettingsView: View {
                             .cornerRadius(8)
                     }
     
+                    // Logout button
                     Button(action: {
-                        authViewModel.logout()
-                        homeViewModel.appUser = nil
+                        authViewModel.logout() // Log out the user
+                        homeViewModel.appUser = nil // Remove user from HomeViewModel
                     }) {
                         Text("Logout")
                             .frame(maxWidth: .infinity)
@@ -113,6 +123,7 @@ struct SettingsView: View {
                 }
                 .padding(.horizontal)
                 
+                // Terms of Service and Privacy Policy notice
                 VStack(alignment: .center){
                     Text("By signing in to your account or creating a new one, you agree to our Terms of Service and Privacy Policy.")
                         .lineLimit(2)
@@ -122,7 +133,7 @@ struct SettingsView: View {
                         .padding()
                 }
 
-                Spacer()
+                Spacer() // Uses the remaining space
             }
         }
     }

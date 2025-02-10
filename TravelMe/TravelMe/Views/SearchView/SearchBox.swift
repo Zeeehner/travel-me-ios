@@ -14,6 +14,7 @@ struct SearchBox: View {
     var body: some View {
         VStack {
             VStack(spacing: 1) {
+                // Search field for destination
                 HStack {
                     Image(systemName: "magnifyingglass")
                         .foregroundStyle(.black)
@@ -26,6 +27,7 @@ struct SearchBox: View {
                 .frame(height: 50)
                 .background(.white)
                 
+                // Date picker for travel date
                 HStack {
                     Image(systemName: "calendar")
                         .foregroundStyle(.red)
@@ -37,6 +39,7 @@ struct SearchBox: View {
                 .frame(height: 50)
                 .background(.white)
                 
+                // Picker for selecting the number of passengers
                 HStack {
                     Image(systemName: "person.2")
                         .foregroundStyle(.green)
@@ -55,8 +58,9 @@ struct SearchBox: View {
                 .frame(height: 50)
                 .background(.white)
                 
+                // Search button
                 Button(action: {
-                    // placeholder
+                    // placeholder for search action
                 }) {
                     Text("Search")
                         .bold()
@@ -78,6 +82,7 @@ struct SearchBox: View {
         }
     }
 }
+
 
 
 #Preview {

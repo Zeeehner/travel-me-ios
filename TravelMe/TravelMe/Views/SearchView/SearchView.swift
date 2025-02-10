@@ -21,12 +21,15 @@ struct SearchView: View {
             ZStack {
                 GradientView()
                     .opacity(0.4)
+                
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 16) {
+                        // Title of the page
                         Text("Travel Me")
                             .font(.headline)
                             .padding(.bottom, 8)
                         
+                        // Scrollable buttons for country selection
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 12) {
                                 ForEach(0..<labels.count, id: \.self) { index in
@@ -48,10 +51,12 @@ struct SearchView: View {
                         
                         Divider()
                         
+                        // SearchBox for destination and other filters
                         SearchBox(homeViewModel: homeViewModel)
                         
                         Divider()
                         
+                        // Featured Hotels Section
                         ScrollView(.vertical, showsIndicators: false) {
                             VStack(alignment: .leading, spacing: 20) {
                                 VStack(alignment: .leading) {
@@ -59,6 +64,7 @@ struct SearchView: View {
                                         .font(.headline)
                                         .padding(.horizontal)
                                     
+                                    // Horizontal scroll for featured hotels
                                     ScrollView(.horizontal, showsIndicators: false) {
                                         LazyHStack(spacing: 16) {
                                             ForEach(0..<min(5, hotelViewModel.hotels.count), id: \.self) { index in
@@ -73,11 +79,13 @@ struct SearchView: View {
                                 
                                 Divider()
                                 
+                                // All Hotels Section
                                 VStack(alignment: .leading) {
                                     Text("All Hotels")
                                         .font(.headline)
                                         .padding(.horizontal)
                                     
+                                    // Grid of all hotels
                                     LazyVGrid(columns: [
                                         GridItem(.flexible()),
                                         GridItem(.flexible())
@@ -96,11 +104,13 @@ struct SearchView: View {
                 }
             }
             .onAppear {
+                // Load hotel data when the view appears
                 hotelViewModel.loadHotelData()
             }
         }
     }
 }
+
 
 #Preview {
     SearchView(homeViewModel: HomeViewModel(firestoreRepository: .init()), hotelViewModel: .init())

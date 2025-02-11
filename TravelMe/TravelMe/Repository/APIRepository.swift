@@ -99,7 +99,7 @@ class APIClient {
         }
     }
     
-    func fetchHotelData(for cityCode: String) async -> [Hotel]? {
+    func fetchHotelDataForCity(for cityCode: String) async -> [Hotel]? {
         do {
             let token = try await getAccessToken()
             guard let url = URL(string: "\(baseUrl)?cityCode=\(cityCode)") else {

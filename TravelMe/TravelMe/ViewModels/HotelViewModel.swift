@@ -67,7 +67,7 @@ class HotelViewModel: ObservableObject {
             print("Fetching hotels for city: \(cityCode)")
             
             do {
-                if let hotels = await apiClient.fetchHotelData(for: cityCode) {
+                if let hotels = await apiClient.fetchHotelDataForCity(for: cityCode) {
                     self.hotels = hotels
                 } else {
                     self.errorMessage = "No hotels found."
@@ -90,7 +90,8 @@ class HotelViewModel: ObservableObject {
             }
             
             do {
-                if let hotels = try await apiClient.fetchHotelData(for: cityName) {
+                if let hotels = try await apiClient.fetchHotelDataForCity(for: cityName) {
+                    print("searching \(cityName) 🛩️ Hotels received: \(hotels.count)")
                     self.hotels = hotels
                 } else {
                     self.errorMessage = "No hotels found."
@@ -99,13 +100,8 @@ class HotelViewModel: ObservableObject {
                 self.errorMessage = "Error loading hotels: \(error.localizedDescription)"
             }
             
+        
             isLoading = false
         }
-    }
-    
-    // Optional: Add method to force reload of data if needed
-    func forceReload() {
-        dataLoaded = false // Reset the dataLoaded flag
-        loadHotelData() // Reload the hotel data
     }
 }

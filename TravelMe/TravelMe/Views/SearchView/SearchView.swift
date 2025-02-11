@@ -14,7 +14,7 @@ struct SearchView: View {
     @ObservedObject var homeViewModel: HomeViewModel
     @ObservedObject var hotelViewModel: HotelViewModel
     
-    let labels = ["Germany", "Austria", "UK", "Dubai", "Istanbul", "Egypt"]
+    let labels = ["Frankfurt", "Austria", "UK", "Dubai", "Istanbul", "Egypt"]
     
     var body: some View {
         NavigationStack {
@@ -90,7 +90,7 @@ struct SearchView: View {
                                         GridItem(.flexible()),
                                         GridItem(.flexible())
                                     ], spacing: 16) {
-                                        ForEach(0..<min(200, hotelViewModel.hotels.count), id: \.self) { index in
+                                        ForEach(0..<min(50, hotelViewModel.hotels.count), id: \.self) { index in
                                             HotelCard(homeViewModel: homeViewModel,
                                                       hotelViewModel: hotelViewModel,
                                                       index: index)
@@ -105,7 +105,7 @@ struct SearchView: View {
             }
             .onAppear {
                 // Load hotel data when the view appears
-                hotelViewModel.loadHotelData()
+                hotelViewModel.loadHotelDataForCity(for: getCityCode(for: "Frankfurt")!)
             }
         }
     }

@@ -56,6 +56,53 @@ class HotelViewModel: ObservableObject {
         }
     }
     
+    func loadHotels(for cityName: String) {
+        guard let cityCode = getCityCode(for: cityName) else {
+            self.errorMessage = "City not found."
+            return
+        }
+        
+        Task {
+            isLoading = true
+            print("Fetching hotels for city: \(cityCode)")
+            
+            do {
+                if let hotels = await apiClient.fetchHotelData(for: cityCode) {
+                    self.hotels = hotels
+                } else {
+                    self.errorMessage = "No hotels found."
+                }
+            } catch {
+                self.errorMessage = "Error loading hotels: \(error.localizedDescription)"
+            }
+            
+            isLoading = false
+        }
+    }
+    func loadHotelDataForCity(for cityName: String) {
+        Task {
+            isLoading = true
+            
+            guard !cityName.isEmpty else {
+                self.errorMessage = "Please enter a valid city name."
+                isLoading = false
+                return
+            }
+            
+            do {
+                if let hotels = try await apiClient.fetchHotelData(for: cityName) {
+                    self.hotels = hotels
+                } else {
+                    self.errorMessage = "No hotels found."
+                }
+            } catch {
+                self.errorMessage = "Error loading hotels: \(error.localizedDescription)"
+            }
+            
+            isLoading = false
+        }
+    }
+    
     // Optional: Add method to force reload of data if needed
     func forceReload() {
         dataLoaded = false // Reset the dataLoaded flag

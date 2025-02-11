@@ -7,14 +7,15 @@
 
 import Foundation
 
-struct CityCodes {
-    static let paris = "PAR"
-    static let newYork = "NYC"
-    static let london = "LON"
-    static let dubai = "DXB"
-    static let istanbul = "IST"
-    static let cairo = "CAI"
-    static let germany = "BER"
-    static let austria = "AUT"
-    static let italy = "ITA"
+let cityCodes: [String: String] = [
+    "Paris": "PAR",
+    "Berlin": "BER",
+    "London": "LON",
+    "New York": "NYC",
+    "Dubai": "DXB",
+    "Istanbul": "IST"
+]
+
+func getCityCode(for cityName: String) -> String? {
+    return cityCodes[cityName]
 }

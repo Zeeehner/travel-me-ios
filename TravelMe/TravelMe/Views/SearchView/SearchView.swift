@@ -52,7 +52,7 @@ struct SearchView: View {
                         Divider()
                         
                         // SearchBox for destination and other filters
-                        SearchBox(homeViewModel: homeViewModel)
+                        SearchBox(homeViewModel: homeViewModel, hotelViewModel: hotelViewModel)
                         
                         Divider()
                         

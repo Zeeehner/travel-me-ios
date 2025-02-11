@@ -98,4 +98,26 @@ class APIClient {
             return nil
         }
     }
+    
+    func fetchHotelData(for cityCode: String) async -> [Hotel]? {
+        do {
+            let token = try await getAccessToken()
+            guard let url = URL(string: "\(baseUrl)?cityCode=\(cityCode)") else {
+                print("Invalid URL")
+                return nil
+            }
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            
+            let (data, _) = try await URLSession.shared.data(for: request)
+            let response = try JSONDecoder().decode(HotelResponse.self, from: data)
+            
+            return response.data ?? []
+        } catch {
+            print("Error fetching hotel data: \(error)")
+            return nil
+        }
+    }
 }

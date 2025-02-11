@@ -10,6 +10,7 @@ import SwiftUI
 struct SearchBox: View {
     
     @ObservedObject var homeViewModel: HomeViewModel
+    @ObservedObject var hotelViewModel: HotelViewModel
     
     var body: some View {
         VStack {
@@ -60,14 +61,18 @@ struct SearchBox: View {
                 
                 // Search button
                 Button(action: {
-                    // placeholder for search action
+                    hotelViewModel.loadHotelDataForCity(for: homeViewModel.destination)
+
                 }) {
-                    Text("Search")
-                        .bold()
-                        .foregroundStyle(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(.blue)
+                    NavigationLink(destination: HotelListView(homeViewModel: homeViewModel, hotelViewModel: hotelViewModel)) {
+                        Text("Search")
+                            .bold()
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(.blue)
+                            .cornerRadius(10)
+                    }
                 }
                 .frame(height: 50)
             }
@@ -88,6 +93,6 @@ struct SearchBox: View {
 #Preview {
     ZStack {
         Color.black
-        SearchBox(homeViewModel: .init(firestoreRepository: .init()))
+        SearchBox(homeViewModel: .init(firestoreRepository: .init()), hotelViewModel: .init())
     }
 }

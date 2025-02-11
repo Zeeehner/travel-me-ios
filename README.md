@@ -11,7 +11,7 @@ The app is perfect for travelers who want to make the most of their time without
 <p>
   <img src="./img/imageLow.png" width="200">
   <img src="./img/imageMid.png" width="200">
-  <img src="./img/imageHigh.png" width="200">
+  <img src="./img/image.png" width="200">
 </p>
 
 ## Features

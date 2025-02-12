@@ -67,7 +67,7 @@ class AuthViewModel: ObservableObject {
     // Computed property to check if the input data for registration is valid
     var isRegisterInputValid: Bool {
         if isRegistering {
-            return !email.isEmpty && !password.isEmpty && password == confirmPassword && !username.isEmpty && !gender.isEmpty && !adress.isEmpty
+            return !email.isEmpty && !password.isEmpty && password == confirmPassword && !username.isEmpty  && !adress.isEmpty
         } else {
             return !email.isEmpty && !password.isEmpty
         }

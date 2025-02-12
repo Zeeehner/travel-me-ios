@@ -17,20 +17,36 @@ struct DashboardView: View {
     
     let hotelLabels = ["Arrival", "Information", "Our Team", "Gallery"]
     
-    @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 52.520008, longitude: 13.404954),
-        span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-    )
+    @State private var isFavorited: Bool = false
+    @State private var region: MKCoordinateRegion
     
+    init(homeViewModel: HomeViewModel, hotelViewModel: HotelViewModel, selectedIndex: Int) {
+        self.homeViewModel = homeViewModel
+        self.hotelViewModel = hotelViewModel
+        self.selectedIndex = selectedIndex
+       
+        if selectedIndex < hotelViewModel.hotels.count {
+            let hotel = hotelViewModel.hotels[selectedIndex]
+            self._region = State(initialValue: MKCoordinateRegion(
+                center: CLLocationCoordinate2D(latitude: hotel.geoCode.latitude, longitude: hotel.geoCode.longitude),
+                span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+            ))
+        } else {
+        
+            self._region = State(initialValue: MKCoordinateRegion(
+                center: CLLocationCoordinate2D(latitude: 52.520008, longitude: 13.404954),
+                span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+            ))
+        }
+    }
     
     var body: some View {
         NavigationStack {
             ZStack {
                 GradientView()
-                    .opacity(0.4) // Background with slight transparency
+                    .opacity(0.4)
                 
                 VStack(spacing: 20) {
-                    // Display the hotel name
                     if selectedIndex < hotelViewModel.hotels.count {
                         Text(hotelViewModel.hotels[selectedIndex].name)
                             .font(.title2)
@@ -38,7 +54,6 @@ struct DashboardView: View {
                             .padding(.top)
                     }
                     
-                    // Horizontal scroll for hotel photos
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack(spacing: 16) {
                             ForEach(0..<5, id: \.self) { _ in
@@ -54,12 +69,11 @@ struct DashboardView: View {
                     }
                     .frame(height: 180)
                     
-                    // Horizontal scroll for hotel labels (Arrival, Information, etc.)
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 12) {
                             ForEach(hotelLabels.indices, id: \.self) { index in
                                 Button(action: {
-                                    homeViewModel.selectedLabel = index // Update the selected label
+                                    homeViewModel.selectedLabel = index
                                 }) {
                                     Text(hotelLabels[index])
                                         .padding(.horizontal, 12)
@@ -72,29 +86,40 @@ struct DashboardView: View {
                         }
                         .padding(.horizontal)
                     }
-                    
-                    // Map section showing the route to the hotel
+                
                     VStack(alignment: .leading, spacing: 12) {
                         Text("Your way to us")
                             .font(.headline)
                             .underline()
                             .padding(.horizontal)
                         
-                        Map(coordinateRegion: $region)
-                            .frame(height: 200)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                            .padding(.horizontal)
+                        // Map mit den Markern für Hotels
+                        Map(coordinateRegion: $region, annotationItems: hotelViewModel.hotels) { hotel in
+                            MapMarker(coordinate: CLLocationCoordinate2D(latitude: hotel.geoCode.latitude, longitude: hotel.geoCode.longitude), tint: .red)
+                        }
+                        .frame(height: 200)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .padding(.horizontal)
                     }
                     
-                    Spacer() // Takes up the remaining space
+                    Spacer()
                 }
                 .padding(.top)
             }
-            .navigationTitle("Hotel-Dashboard") // Title of the view
+            .navigationTitle("Hotel-Dashboard")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        isFavorited.toggle()
+                    }) {
+                        Image(systemName: isFavorited ? "star.fill" : "star")
+                            .foregroundStyle(.yellow)
+                    }
+                }
+            }
         }
     }
 }
-
 
 #Preview {
     DashboardView(

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PhotoBox: View {
-    @StateObject private var viewModel = PhotoBoxImageViewModel() // Verwende das neue ViewModel
+    @StateObject private var viewModel = PhotoBoxImageViewModel() 
     let photoName: String // Name des Fotos, das geladen werden soll
 
     var body: some View {
@@ -31,12 +31,12 @@ struct PhotoBox: View {
         }
         .onAppear {
             Task {
-                await viewModel.fetchImage(photoName: photoName) // Asynchroner Aufruf zum Laden des Bildes
+                await viewModel.fetchImage(photoName: photoName)
             }
         }
     }
 }
 
 #Preview {
-    PhotoBox(photoName: "Beach") // Beispiel für die Verwendung der PhotoBox
+    PhotoBox(photoName: "Döner")
 }

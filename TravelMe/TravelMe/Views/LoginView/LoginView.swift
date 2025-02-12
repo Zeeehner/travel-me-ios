@@ -67,19 +67,7 @@ struct LoginView: View {
                                 Spacer()
                                 DatePicker("", selection: $authViewModel.birthday, in: ...Date(), displayedComponents: .date)
                                     .datePickerStyle(.compact)
-                            }
                             
-                            // Picker for gender selection
-                            HStack {
-                                Text("Selected gender:")
-                                    .bold()
-                                    .padding()
-                                Spacer()
-                                Picker("Select your gender", selection: $authViewModel.gender) {
-                                    ForEach(authViewModel.genderOptions, id: \.self) { gen in
-                                        Text(gen)
-                                    }
-                                }
                             }
                         }
                         

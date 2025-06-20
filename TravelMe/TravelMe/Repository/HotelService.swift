@@ -12,7 +12,7 @@ import Amadeus
 class HotelService {
     
     /// Amadeus API client instance.
-    private let amadeus = Amadeus(client_id: "***REMOVED***", client_secret: "0x4XR25goUJEfAMv")
+    private let amadeus = Amadeus(client_id: "g74rKfYnnM0GXcSTCKMv4LwIDEdVIbvT", client_secret: "0x4XR25goUJEfAMv")
     
     /// Fetches hotels from the Amadeus API.
     /// - Parameter cityCode: The city code for which hotels should be fetched.

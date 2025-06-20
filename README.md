@@ -1,51 +1,64 @@
-# Travel Me
+# Travel Me ✈️🏨
 
-**Did you already traveled Me?**
+**Your simple hotel finder app – built with Swift and SwiftUI.**
 
-"Travel Me" is the app that makes your travel planning a breeze. When you search for a city, the app shows you a selection of hotels that perfectly match your budget and preferences. Whether it's for a spontaneous weekend getaway or a longer trip, with "Travel Me", you'll always find the best hotel deals in one place.
+> A streamlined travel planning app focused on **hotel discovery** with a clean UI and minimal distractions.  
+> Designed as part of a Swift iOS Bootcamp project.
 
-The app is ideal for travelers who want to make the most of their time without spending hours searching for the best prices and options. It offers a user-friendly interface that helps you quickly find the perfect hotels without being overwhelmed by too many choices. Compared to other apps, "Travel Me" focuses on simplicity and clear recommendations, allowing you to focus entirely on your journey.
+---
 
-## Design
+## 🧩 Overview
+
+Travel Me helps users quickly search for hotels based on location and preferences.  
+The app prioritizes clarity, simplicity, and direct access to relevant results – ideal for quick weekend planning or spontaneous bookings.
+
+---
+
+## 📱 Features
+
+- 🔍 Search for hotels in any city    
+- 📸 Display hotel previews via Unsplash (mock images)  
+- 📂 Offline support using Swift Data (cached results)  
+- 🔐 Firebase authentication (email-based sign-up/login)  
+
+---
+
+## 🔌 APIs & Integrations
+
+- **Firebase Auth** – user login & session handling  
+- **Unsplash API** – high-quality hotel visuals  
+- **Amadeus API** – hotel name & location metadata  
+
+---
+
+## 🛣️ Roadmap
+
+- [x] Hotel search and result list  
+- [x] Unsplash image integration  
+- [ ] Trip planner with itinerary  
+- [ ] Stripe or Apple Pay integration  
+- [ ] Save/bookmark hotels  
+
+---
+
+## 🧪 Requirements
+
+- iOS 16.0+  
+- Xcode 15+  
+- Swift 5.9
+
+---
+
+## ✍️ Author
+
+Noah – TravelMe iOS Project (2024 Bootcamp)
+
+---
+
+## 🎨 Design Preview
 
 <p>
   <img src="./img/imageLow.png" width="200">
   <img src="./img/imageMid.png" width="200">
   <img src="./img/image.png" width="200">
 </p>
-
-## Features
-**Here are all the features my app offers.**
-
-- 🏨 Display hotels matching budget and preferences
-- 🏠 Filter options for hotels (e.g., price range, star rating, amenities)
-- 🤓 User account creation for trip management
-- 🗺️ Integration with maps for nearby hotel locations
-
-#### Project Structure
-The project follows the MVVM (Model-View-ViewModel) architecture, which allows for a clean separation of concerns. The View handles the UI and user interaction, while the ViewModel holds the business logic and data processing. The Model is responsible for the data representation and API integration.
-
-**Folder Structure:**
-- /Models – Data models, such as Flight, Hotel, Booking.
-- /Views – SwiftUI views, including screens like the flight search, hotel details, and booking confirmation.
-- /ViewModels – Contains all the business logic for processing flight and hotel data.
-
-#### Data Storage
-I store user preferences (e.g., chosen destinations, filter settings) in Swift Data for offline-first functionality, ensuring a seamless experience even when the user is not connected to the internet. Data like hotel searches are retrieved from APIs and are temporarily stored in memory for faster access during the session.
-
-#### API Calls
-For this app, I’m using the Amadeus API to retrieve real-time information about available hotels in cities based on user preferences. This ensures that you always get the most up-to-date options that perfectly match your budget and needs.
-
-Additionally, the Unsplash API is used to provide beautiful, high-quality photos of hotels, helping you get a better feel for your accommodation choices before booking.
-
-#### 3rd-Party Frameworks
-- Firebase for authentication and real-time notifications about price changes.
-- Amadeus for Developers for tracking API calls
-- Unsplash API for providing high-quality hotel images.
-
-
-## Outlook
--  Trip itinerary builder with flight, hotel, and acticity suggestions
--  Integration with a payment gateway for seamless booking
--  Social sharing features for itineraries and trips
--  Price prediction algorithm based on historical data to help users decide when to book

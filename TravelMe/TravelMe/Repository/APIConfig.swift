@@ -9,7 +9,7 @@ import Foundation
 
 struct APIConfig {
     
-    static let clientId = "***REMOVED***"
-    static let clientSecret = "***REMOVED***"
+    static let clientId = "g74rKfYnnM0GXcSTCKMv4LwIDEdVIbvT"
+    static let clientSecret = "Ox4XR25goUJEfAMv"
     static let baseURL = "https://test.api.amadeus.com/v1"
 }

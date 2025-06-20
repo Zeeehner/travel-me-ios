@@ -15,7 +15,7 @@ class APIClient {
     private var tokenExpiryDate: Date?
     
     /// The client ID used for authentication with the Amadeus API.
-    private let clientId = "***REMOVED***"
+    private let clientId = "g74rKfYnnM0GXcSTCKMv4LwIDEdVIbvT"
     
     /// Base URL for fetching hotel data by city.
     private let baseUrl = "https://test.api.amadeus.com/v1/reference-data/locations/hotels/by-city"
@@ -42,7 +42,7 @@ class APIClient {
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         
         // The request body contains the client ID and secret for authentication.
-        let body = "grant_type=client_credentials&client_id=\(clientId)&client_secret=***REMOVED***"
+        let body = "grant_type=client_credentials&client_id=\(clientId)&client_secret=Ox4XR25goUJEfAMv"
         request.httpBody = body.data(using: .utf8)
         
         // Sends the request and decodes the response.
